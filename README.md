@@ -15,7 +15,8 @@ Backend: Express
 Datenbank: SQLite
 
 Installation
-Klone das Repository:
+
+- Klone das Repository:
 
 - Code kopieren
   git clone https://github.com/dein-benutzername/dein-repo.git
