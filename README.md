@@ -48,5 +48,5 @@ Mitwirkende
 @armin-backhaus
 
 
-Lizenz
+- Lizenz:
 Dieses Projekt ist unter der MIT-Lizenz lizenziert.
