@@ -18,6 +18,10 @@ function Register() {
      } else if (email && password) {
 
         setMessage('Registrierung erfolgreich!');
+        setPassword('');
+        setConfirmPassword('');
+        setEmail('');
+        
      } else {
 
         setMessage('Registrierung fehlgeschlagen, bitte überprüfe deine Eingaben!');
