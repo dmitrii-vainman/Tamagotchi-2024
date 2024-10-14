@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 
 const users = {
   'user@example.com': { password: 'pass123', username: 'user'}
@@ -12,36 +13,46 @@ function Login() {
 
 
 
-    const handleLogin = () => {
+    const handleSubmit = (event) => {
+      event.preventDefault();
       if (users[email] && users[email].password === password) {
         setUsername(users[email].username)
         setMessage('Login erfolgreich!');
      } else {
         setMessage('Login fehlgeschlagen, bitte überprüfe deine Eingaben!');
+        setUsername('');
     }
 };
 
 return (
    
-   <div>
+<div>
+  <form onSubmit={handleSubmit}>
+    <label htmlFor="email">E-Mail-Adresse</label><br/>
       <input 
         type="text"
-        placeholder="Email"
         value={email}
+        id="email"
         onChange={(e) => setEmail(e.target.value)} 
-    />
-   
+        required
+      /><br/>
+
+   <label htmlFor="password">Passwort</label><br/>
       <input 
         type="password"
-        placeholder="Passwort"
+        id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)} 
+        required
     />
+    <br/><br/>
     
-    
-    <button onClick={handleLogin}>Login</button>
+    <button type="submit" disabled={!email || !password}>Login</button>
     <p>{message}</p>
     {username && <p>Willkommen, {username}!</p>}{}
+
+    </form>
+    <p><Link to="/Register">Registrierung</Link></p>
 </div>
 
 )}

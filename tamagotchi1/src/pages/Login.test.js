@@ -1,42 +1,40 @@
-// Login.test.js
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import Login from './Login';
 
-test('zeigt eine erfolgreiche Nachricht an, wenn die Anmeldedaten korrekt sind', () => {
-    render(<Login />);
-  
-    // Eingabeelemente und Button auswählen
-    const emailInput = screen.getByPlaceholderText('Email');
-    const passwordInput = screen.getByPlaceholderText('Passwort');
-    const loginButton = screen.getByText('Login');
+test('Login erfolgreich', () => {
+  render(<Login />);
 
-    // Gebe korrekte Anmeldedaten ein
-    fireEvent.change(emailInput, { target: { value: 'user' } });
-    fireEvent.change(passwordInput, { target: { value: 'pass123' } });
-  
-    // Klicke auf den Login-Button
-    fireEvent.click(loginButton);
+  // E-Mail und Passwort eingeben
+  fireEvent.change(screen.getByLabelText(/E-Mail-Adresse/i), {
+    target: { value: 'user@example.com' },
+  });
+  fireEvent.change(screen.getByLabelText(/Passwort/i), {
+    target: { value: 'pass123' },
+  });
 
-    // Erwartet, dass die Erfolgsmeldung angezeigt wird
-    expect(screen.getByText('Login erfolgreich!')).toBeInTheDocument();
+  // Formular absenden
+  fireEvent.click(screen.getByText(/Login/i));
+
+  // Erfolgsnachricht überprüfen
+  expect(screen.getByText(/Login erfolgreich!/i)).toBeInTheDocument();
+  expect(screen.getByText(/Willkommen, user!/i)).toBeInTheDocument();
 });
 
-test('zeigt eine Fehlermeldung an, wenn die Anmeldedaten falsch sind', () => {
-    render(<Login />);
+test('Login fehlgeschlagen', () => {
+  render(<Login />);
 
-    // Eingabeelemente und Button auswählen
-    const emailInput = screen.getByPlaceholderText('Email');
-    const passwordInput = screen.getByPlaceholderText('Passwort');
-    const loginButton = screen.getByText('Login');
+  // Ungültige E-Mail und Passwort eingeben
+  fireEvent.change(screen.getByLabelText(/E-Mail-Adresse/i), {
+    target: { value: 'wrong@example.com' },
+  });
+  fireEvent.change(screen.getByLabelText(/Passwort/i), {
+    target: { value: 'wrongpass' },
+  });
 
-    // Gebe falsche Anmeldedaten ein
-    fireEvent.change(emailInput, { target: { value: 'wrongUser' } });
-    fireEvent.change(passwordInput, { target: { value: 'wrongPass' } });
+  // Formular absenden
+  fireEvent.click(screen.getByText(/Login/i));
 
-    // Klicke auf den Login-Button
-    fireEvent.click(loginButton);
-
-    // Erwartet, dass die Fehlermeldung angezeigt wird
-    expect(screen.getByText('Login fehlgeschlagen, bitte überprüfe deine Eingaben!')).toBeInTheDocument();
+  // Fehlermeldung überprüfen
+  expect(screen.getByText(/Login fehlgeschlagen, bitte überprüfe deine Eingaben!/i)).toBeInTheDocument();
 });
