@@ -28,7 +28,8 @@ test('Registrierung fehlgeschlagen', () => {
     target: { value: 'test@example.com' },
   });
 
-  // Formular absenden
+  // Formular absenden - funktioniert im testing nur wenn der Button auch ohne Inhalt submitted werden kann
+
   fireEvent.click(screen.getByText(/Registrieren/i));
 
   // Fehlermeldung überprüfen

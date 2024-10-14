@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: lightgray;
+  background-color: #121212;
+  color: #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,10 +10,10 @@ body {
 }
 
 form {
-  background-color: #ffffff;
+  background-color: #1f1f1f;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   width: 300px;
 }
 
@@ -20,24 +21,25 @@ label {
   font-weight: bold;
   margin-bottom: 10px;
   display: inline-block;
+  color: #e0e0e0;
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"] {
-  align-items: center;
+  background-color: #333333;
+  color: #e0e0e0;
+  border: 1px solid #444444;
   width: 93%;
   padding: 10px;
   margin: 8px 0;
-  border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 button {
-  align-items: center;
   width: 100%;
   padding: 10px;
-  background-color: #4c56af;
-  color: white;
+  background-color: #555555;
+  color: #e0e0e0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -45,31 +47,46 @@ button {
 }
 
 button:hover {
-  background-color: #4c56af;
+  background-color: #666666;
+}
+
+.color-picker-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.color-picker-button {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #444444;
+}
+
+.color-picker-button.selected {
+  border: 3px solid #e0e0e0;
 }
 
 p {
   margin-top: 15px;
   text-align: center;
+  color: #e0e0e0;
 }
 
 a {
-  color: #4c56af;
+  color: #888888;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #aaaaaa;
 }
 
-p.message {
-  color: red;
+p.message, .error {
+  color: #ff5555;
 }
 
 .success {
-  color: green; 
-}
-
-.error {
-  color: red;
+  color: #55ff55;
 }
