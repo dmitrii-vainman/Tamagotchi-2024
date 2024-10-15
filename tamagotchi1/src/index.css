@@ -1,3 +1,4 @@
+/* Grundlegende Stile für den Body */
 body {
   font-family: Arial, sans-serif;
   background-color: #121212;
@@ -9,14 +10,17 @@ body {
   margin: 0;
 }
 
+/* Stil für Formulare */
 form {
   background-color: #1f1f1f;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   width: 300px;
+  max-width: 100%; /* Responsive Breite */
 }
 
+/* Stil für Labels */
 label {
   font-weight: bold;
   margin-bottom: 10px;
@@ -24,6 +28,8 @@ label {
   color: #e0e0e0;
 }
 
+/* Stile für Eingabefelder */
+input[type="text"],
 input[type="email"],
 input[type="password"] {
   background-color: #333333;
@@ -33,8 +39,16 @@ input[type="password"] {
   padding: 10px;
   margin: 8px 0;
   border-radius: 4px;
+  transition: border-color 0.3s; /* Übergang für den Rahmen */
 }
 
+/* Eingabefelder im Fokus */
+input:focus {
+  border-color: #66bb6a; /* Farben ändern, wenn das Eingabefeld fokussiert ist */
+  outline: none; /* Entferne den Standard-Outline */
+}
+
+/* Stil für Buttons */
 button {
   width: 100%;
   padding: 10px;
@@ -44,49 +58,101 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s; /* Übergang für den Hintergrund */
 }
 
+/* Button Hover-Effekt */
 button:hover {
   background-color: #666666;
 }
 
-.color-picker-container {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.color-picker-button {
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
+/* Loader-Stil */
+.loader {
+  border-top: 7px solid rgb(207, 158, 85);
+  border-right: 7px solid rgb(179, 178, 133);
+  border-bottom: 7px solid rgb(62, 58, 58);
+  border-left: 7px solid rgb(230, 218, 213);
   border-radius: 50%;
-  border: 2px solid #444444;
+  width: 25px;
+  height: 25px;
+  animation: spin 2s linear infinite;
 }
 
-.color-picker-button.selected {
-  border: 3px solid #e0e0e0;
+/* Spinner Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
+/* Loader-Container Stil */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+  margin-bottom: 20px;
+}
+
+
+p.message, .error {
+  color: #ff5555;
+}
+
+
+.success {
+  color: #55ff55;
+}
+
+/* Stil für allgemeine Absätze */
 p {
   margin-top: 15px;
   text-align: center;
   color: #e0e0e0;
 }
 
+/* Stil für Links */
 a {
   color: #888888;
   text-decoration: none;
 }
 
+h2 {
+margin-bottom: 15px;
+
+}
+/* Hover-Effekt für Links */
 a:hover {
   color: #aaaaaa;
 }
 
-p.message, .error {
-  color: #ff5555;
+/* Responsive Layout */
+@media (max-width: 400px) {
+  form {
+    width: 90%; /* Breite des Formulars für kleine Bildschirme */
+  }
+
+  button {
+    font-size: 14px; /* Kleinere Schriftgröße für Buttons */
+  }
 }
 
-.success {
-  color: #55ff55;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Vollbildhöhe */
+  background-color: #121212; /* Dunkler Hintergrund */
+}
+
+.logo {
+  font-size: 3rem; /* Schriftgröße */
+  color: #e0e0e0; /* Schriftfarbe */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Schatteneffekt */
+  transition: transform 0.3s ease; /* Übergangseffekt */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Vergrößert das Logo beim Hover */
 }

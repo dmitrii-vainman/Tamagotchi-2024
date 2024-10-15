@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import Login from './Login';
+import Login from '../tamagotchi1/src/pages/Login';
 
 test('Login erfolgreich', () => {
   render(<Login />);
