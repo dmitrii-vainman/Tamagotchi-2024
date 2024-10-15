@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Impressum from './pages/Impressum';
@@ -6,6 +6,10 @@ import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 
 
 function App() {
+
+  useEffect(() => {
+    document.title = 'SnuggleBuddy'; // Titel des Tabs
+  }, []);
 
   return (
     
