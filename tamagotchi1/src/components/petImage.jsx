@@ -1,20 +1,33 @@
-// src/components/PetImage.jsx
 import React from 'react';
 
-const PetImage = ({ petType }) => {
-  const images = {
-    dog: '../public/images/dog.png',
-    cat: '../public/images/cat.png',
-    snake: '../public/images/snake.png',
-  };
+const PetImage = ({ petType, selectedColor, petName }) => {
+    // Define images for each pet type and color
+    const images = {
+      dog: {
+        '#ed5345': '../public/images/dog.png',
+        '#6bd694': '../public/images/dog-2.png',
+  
+      },
+      cat: {
+        '#ed5345': '../public/images/cat.png',
+        '#6bd694': '../public/images/cat-2.png',
+ 
+      },
+      bird: {
+        '#ed5345': '../public/images/bird.png',
+        '#6bd694': '../public/images/bird-2.png',
 
-  const petImageSrc = images[petType] || '../public/images/dog.png'; // Default image if petType is not recognized
+      },
+    };
 
-  return (
-    <div>
-      <img src={petImageSrc} alt={petType || 'default pet'} style={{ width: '200px', height: 'auto' }} />
-    </div>
-  );
+    const petImageSrc = images[petType]?.[selectedColor] || '../public/images/dog.png'; // Fallback if no match
+
+    return (
+      <div>
+        <h2>Dein Buddy{petName}</h2>
+        <img src={petImageSrc} alt={petType} style={{ width: '300px', height: 'auto' }} />
+      </div>
+    );
 };
 
 export default PetImage;

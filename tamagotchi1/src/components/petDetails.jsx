@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import PetColorPicker from './petColor';
 
-const PetForm = ({ updatePetType, petType }) => { // Add petType as a prop
-  const [petName, setPetName] = useState('');
+const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setPetName }) => { // Add petType as a prop
   const [age, setAge] = useState('');
   const [snack, setSnack] = useState('');
 
@@ -12,23 +12,24 @@ const PetForm = ({ updatePetType, petType }) => { // Add petType as a prop
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Erstelle deinen Begleiter!</h2>
+      <h2>Erstelle deinen Snuggle Buddy!</h2>
 
-      <div>
+      <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
         <label>Typ: </label>
         <select value={petType} onChange={handlePetTypeChange}> {/* Use petType prop here */}
           <option value="">--Wähle einen Typ--</option>
           <option value="dog">Hund</option>
           <option value="cat">Katze</option>
-          <option value="snake">Schlange</option>
+          <option value="bird">Vogel</option>
         </select>
       </div>
 
+      <PetColorPicker selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
+      
       <div>
         <label>Name: </label>
         <input
           type="text"
-          value={petName}
           onChange={(e) => setPetName(e.target.value)}
           placeholder="Name: "
         />
