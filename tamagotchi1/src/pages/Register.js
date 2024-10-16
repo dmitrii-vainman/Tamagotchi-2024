@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 //Dummy-Datenbank
 const registeredEmails = ['user@example.com'];
 
+
 function Register() {
 
     const [formData, setFormData] = useState({

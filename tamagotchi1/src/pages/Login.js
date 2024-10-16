@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-//Dummy-Datenbank
+/*Dummy-Datenbank
 const users = {
   'user@example.com': { password: 'pass123', username: 'user' }
-};
+};*/
+
+const apiUrl = 'http://35.159.51.51:3000/'
 
 function Login() {
 
@@ -13,6 +15,7 @@ function Login() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
+  const [shouldLogin, setShouldLogin] = useState(false);//Zustand für den Login
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -37,20 +40,56 @@ function Login() {
 
     if (!validateEmail(email)) {
       setMessage('Bitte geben Sie eine gültige E-Mail-Adresse ein!');
-    } else if (!users[email]) {
-      setMessage('E-Mail nicht gefunden!');
-      setPassword('');
-    } else if (users[email].password !== password) {
-      setMessage('Falsches Passwort!');
-    } else {
-      setUsername(users[email].username);
-      setMessage('Login erfolgreich!');
-      setEmail('');
-      setPassword('');
-    }
+      setLoading(false);
+      return;
 
-    setLoading(false);
-  };
+    } 
+    if (!validatePassword(password)) {
+      setMessage('Das Passwort muss mindestens 6 Zeichen lang sein!');
+      setLoading(false);
+      return;
+    }
+    setShouldLogin(true)
+  }
+  useEffect(() => {
+    const loginUser = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Speichere den Token in localStorage oder einer anderen sicheren Stelle
+          localStorage.setItem('token', data.token);
+          setUsername(data.username);
+          setMessage('Login erfolgreich!');
+          setEmail('');
+          setPassword('');
+        } else {
+          setMessage(data.error || 'Login fehlgeschlagen!');
+          setPassword('');
+        }
+      } catch (error) {
+        setMessage('Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
+      } finally {
+        setLoading(false);
+        setShouldLogin(false); // Zurücksetzen nach dem Login-Versuch
+      }
+    };
+
+    if (shouldLogin) {
+      loginUser();
+    }
+  }, 
+  
+  [shouldLogin, email, password]); // Abhängigkeiten von useEffect
+
 
   return (
     <div className="login-container">
@@ -96,6 +135,6 @@ function Login() {
       <p><Link to="/impressum">Impressum</Link></p>
     </div>
   );
-}
+};
 
 export default Login;
