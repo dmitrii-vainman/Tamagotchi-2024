@@ -6,8 +6,6 @@ const users = {
   'user@example.com': { password: 'pass123', username: 'user' }
 };*/
 
-const apiUrl = 'http://35.159.51.51:3000/'
-
 function Login() {
 
   const [email, setEmail] = useState('');
@@ -54,7 +52,7 @@ function Login() {
   useEffect(() => {
     const loginUser = async () => {
       try {
-        const response = await fetch(`${apiUrl}/login`, {
+        const response = await fetch(`http://35.159.51.51:3000/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

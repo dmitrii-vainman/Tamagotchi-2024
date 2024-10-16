@@ -1,0 +1,23 @@
+// __tests__/login.test.js
+
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'; // waitFor importieren
+import { BrowserRouter as Router } from 'react-router-dom'; // Importiere den Router
+import Login from '../src/pages/Login'; // Passe den Pfad entsprechend an
+
+describe('Login Component', () => {
+  beforeEach(() => {
+    render(
+      <Router> {/* Füge den Router-Provider hinzu */}
+        <Login />
+      </Router>
+    );
+  });
+
+  test('shows an error message for invalid email', () => {
+    fireEvent.change(screen.getByLabelText(/E-Mail-Adresse/i), {
+      target: { value: 'invalid-email' },
+    });
+
+});
+});

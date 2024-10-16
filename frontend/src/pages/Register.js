@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-//Dummy-Datenbank
-const registeredEmails = ['user@example.com'];
+/*Dummy-Datenbank
+const registeredEmails = ['user@example.com'];*/
 
 
 function Register() {
@@ -28,42 +28,59 @@ function Register() {
       event.preventDefault();
       const { email, password, confirmPassword, username} = formData
 
-      setLoading(true);
-      
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if (!validatePassword(password)) {
       setMessage('Das Passwort muss mindestens 6 Zeichen lang sein.');
+      return;
+
     } else if (password !== confirmPassword) {
       setMessage('Passwörter stimmen nicht überein!');
-    } else if (registeredEmails.includes(email)) { 
-      setMessage('Diese E-Mail-Adresse ist bereits registriert.');
-      setFormData({ ...formData, password: '', confirmPassword: '' });
-    } else  {
-      setMessage('Registrierung erfolgreich!');
-      setFormData({ email: '', password: '', confirmPassword: '', username: '' });
-    };
-
-      setLoading(false)
+      return
     }
+    setLoading(true)
 
-return (   
-<div>
+try {
 
-  <form onSubmit={handleSubmit}>
+  const response = await fetch(`http://35.159.51.51:3000/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password, username})
+})
+if (response.ok) {
+  setMessage('Registrierung erfolgreich!');
+  setFormData({email: '', password: '', confirmPassword: '', username: ''});
+} else {
+  setMessage(data.error || 'Registrierung fehlgeschlagen!')
+}
+}
+  catch(error) {
+  setMessage('Ein Fehler ist aufgetreten. Bitte versuche es erneut!')
+}
+  finally {
+  setLoading(false)
+
+}
+}
+  return (
+    <div>
+
+    <form onSubmit={handleSubmit}>
 
     <label htmlFor="email">E-Mail-Adresse</label>
 
-      <input 
+      <input
         type="email"
         id="email"
         name="email"
         value={formData.email}
         placeholder="E-Mail-Adresse:"
-        onChange={handleChange} 
+        onChange={handleChange}
       /><br/><br/>
 
-    
+
     <label htmlFor="username">Benutzername</label>
 
       <input
@@ -72,29 +89,29 @@ return (
         name="username"
         value={formData.username}
         placeholder="Benutzername:"
-        onChange={handleChange} 
+        onChange={handleChange}
         /><br/><br/>
 
-   <label htmlFor="password">Passwort</label>
+    <label htmlFor="password">Passwort</label>
 
-      <input 
+      <input
         type="password"
         id="password"
         name="password"
         value={formData.password}
         placeholder="Passwort:"
-        onChange={handleChange} 
+        onChange={handleChange}
     /><br/><br/>
 
     <label htmlFor="confirmPassword">Passwort bestätigen</label>
 
-          <input 
+          <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
             placeholder="Passwort bestätigen:"
-            onChange={handleChange} 
+            onChange={handleChange}
             required
 
           /><br/><br/>
@@ -108,7 +125,7 @@ return (
      {loading ? 'Lade ...' : 'Registrierung'}</button>
 
     <p className={message.includes('erfolgreich') ? 'success' : 'error'}>{message}</p>
-    
+
 
   </form>
 
