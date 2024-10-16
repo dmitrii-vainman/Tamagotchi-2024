@@ -3,12 +3,14 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';  // dotenv importieren
 import db from './db/database.js';
+import cors  from 'cors';
 
 dotenv.config();  // .env-Datei laden
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 // Middleware zur Token-Verifizierung
