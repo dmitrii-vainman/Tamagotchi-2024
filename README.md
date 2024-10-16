@@ -42,7 +42,7 @@ Speichere die Informationen, um mit deinem Haustier zu interagieren.
 
 Mitwirkende
 @jihenmich
-@timodorst
+@timod94
 @dmitrii-vainman
 @vibck
 @armin-backhaus
