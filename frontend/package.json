@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "react-scripts start",
-    "test": "jest"
+    "test": "jest",
+    "build": "react-scripts build"
   },
   "keywords": [],
   "author": "",
@@ -45,5 +46,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

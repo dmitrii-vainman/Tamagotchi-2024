@@ -4,17 +4,26 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';  // dotenv importieren
 import db from './db/database.js';
 import cors  from 'cors';
+import path from 'path'
 
 dotenv.config();  // .env-Datei laden
 
+const jwtSecret = process.env.JWT_SECRET;
+
+
 const app = express();
 const port = 5000;
+
 
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET', 'POST'], 
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+const __dirname = path.resolve(); // Falls du Node.js Version >=14 hast
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
+
 
 app.use(express.json());
 
@@ -111,6 +120,10 @@ app.post('/create-pet', verifyToken, (req, res) => {
 // Geschützter Endpunkt
 app.get('/protected-endpoint', verifyToken, (req, res) => {
   res.status(200).json({ message: 'Erfolgreich zugegriffen!' });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,'..', 'frontend', 'build', 'index.html'));
 });
 
 if (process.env.NODE_ENV !== 'test') {
