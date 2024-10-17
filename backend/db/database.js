@@ -25,6 +25,8 @@ const db = new sqlite3.Database('./users.db', (err) => {
             petname TEXT,
             species TEXT,
             type TEXT,
+            age INTEGER,
+            food  TEXT,
             FOREIGN KEY (user_id) REFERENCES users(id)
         )`, (err) => {
             if (err) {
