@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /*Dummy-Datenbank
 const registeredEmails = ['user@example.com'];*/
@@ -15,7 +15,7 @@ function Register() {
     });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false); // Ladezustand hinzufügen
-
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value});
@@ -48,25 +48,28 @@ try {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email, password, username})
-})
+});
+
+const data = await response.json();
+      
 if (response.ok) {
   setMessage('Registrierung erfolgreich!');
   setFormData({email: '', password: '', confirmPassword: '', username: ''});
-} else {
+  setTimeout(() => {
+  navigate('/login')}, 2000);
+} else { 
   setMessage(data.error || 'Registrierung fehlgeschlagen!')
 }
-}
-  catch(error) {
-  setMessage('Ein Fehler ist aufgetreten. Bitte versuche es erneut!')
-}
-  finally {
-  setLoading(false)
 
+} catch(error) {
+  setMessage('Ein Fehler ist aufgetreten. Bitte versuche es erneut!')
+} finally {
+  setLoading(false)
 }
-}
+};
   return (
     <div>
-
+    <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
     <form onSubmit={handleSubmit}>
 
     <label htmlFor="email">E-Mail-Adresse</label>
@@ -116,11 +119,13 @@ if (response.ok) {
 
           /><br/><br/>
 
+
     {loading && (
       <div className="loader-container">
+        
           <div className="loader"></div></div> // Loader anzeigen, wenn loading true ist
         )}
-
+    
     <button type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword || !formData.username || loading}>
      {loading ? 'Lade ...' : 'Registrierung'}</button>
 

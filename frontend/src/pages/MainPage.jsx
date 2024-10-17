@@ -1,6 +1,7 @@
 // src/pages/MainPage.jsx
 import React, { useState } from 'react';
 import PetImage from '../components/petImage';
+import { Link } from 'react-router-dom';
 
 const MainPage = ({ petType, selectedColor, petName }) => {
   const [affection, setAffection] = useState(0);
@@ -50,6 +51,9 @@ const MainPage = ({ petType, selectedColor, petName }) => {
         🌭🍏🍕
       </button>
       {affection}
+
+      <p><Link to="/impressum">Impressum</Link></p>
+
     </div>
   );
 };
