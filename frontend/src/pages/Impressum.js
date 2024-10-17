@@ -6,6 +6,7 @@ function Impressum() {
     return (
 
         <div>
+            <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
             <h2>Unser Impressum</h2>
 
             <p>
@@ -14,7 +15,7 @@ function Impressum() {
 
             <p><Link to="/login">Einloggen</Link></p>
             <p><Link to="/register">Registrierung</Link></p>
-
+            
         </div>
     )
 }

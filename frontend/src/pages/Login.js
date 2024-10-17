@@ -14,7 +14,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [shouldLogin, setShouldLogin] = useState(false);//Zustand für den Login
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -125,6 +125,7 @@ function Login() {
 
   return (
     <div className="login-container">
+      <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">E-Mail-Adresse</label>
         <input
@@ -163,9 +164,10 @@ function Login() {
         {username && <p>Willkommen, {username}!</p>}
       </form>
 
+      
       <p><Link to="/register">Registrierung</Link></p>
       <p><Link to="/impressum">Impressum</Link></p>
-      <p><Link to="/mainpage">Home</Link></p>
+      
     </div>
   );
 };
