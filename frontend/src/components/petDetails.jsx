@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PetColorPicker from './petColor';
+import './petDetails.css'
 
 const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setPetName }) => { // Add petType as a prop
   const [age, setAge] = useState('');

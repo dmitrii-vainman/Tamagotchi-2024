@@ -1,0 +1,30 @@
+/* PetForm.css */
+.pet-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Increased bottom margin for better spacing */
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #5b4b4b; /* Darker label color for better visibility */
+  }
+  
+  input, select {
+    padding: 10px; /* Increased padding for inputs */
+    border: 1px solid #6f4c3e; /* Darker border color */
+    border-radius: 5px;
+    font-size: 14px; /* Adjusted font size for better readability */
+    background-color: #f2e6d2; /* Warm, muted light background for inputs */
+  }
+  
+  input[type="text"], input[type="number"], select {
+    width: 100%; /* Make input fields full width */
+  }
+  

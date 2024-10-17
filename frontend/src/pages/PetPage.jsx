@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PetForm from '../components/petDetails';
 import PetImage from '../components/petImage'; 
 import { useNavigate } from 'react-router-dom';
+import './PetPage.css'
+
 
 function PetPage() {
   const [selectedColor, setSelectedColor] = useState(''); // Track selected color
@@ -25,7 +27,6 @@ function PetPage() {
 
   return (
     <div className="PetPage">
-      <h1>Snuggle Buddy</h1>
       <div className="container">
         <div className="form">
           <PetForm

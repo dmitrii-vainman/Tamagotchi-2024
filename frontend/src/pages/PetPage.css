@@ -1,0 +1,45 @@
+/* PetPage.css */
+.PetPage {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center items vertically */
+    height: calc(60vh + 20px); /* Increase height a bit more than the container */
+    background-color: #7d6b68; /* Darker warm gray/brown for the background */
+    padding: 20px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row; /* Side by side layout */
+    align-items: flex-start;
+    background-color: #9a7d74; /* Warmer, muted color for the form container */
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+    width: 900px; /* Container width */
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 50%; /* Adjust width to 50% to balance the layout */
+    padding: 20px; /* Add padding for internal spacing */
+  }
+  
+  button {
+    background-color: #8b5a2b; /* Warm brown color for button */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 15px; /* Balanced padding */
+    font-size: 16px; /* Adjusted font size */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+    align-self: flex-start; /* Align button to the left */
+    margin-top: 15px; /* Add margin on top */
+  }
+  
+  button:hover {
+    background-color: #6f4c3e; /* Darker shade on hover */
+  }
+  
