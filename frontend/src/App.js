@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     document.title = 'SnuggleBuddy'; // Titel des Tabs
   }, []);
-
+{/* hi */}
   return (
     <Router>
       <div>
