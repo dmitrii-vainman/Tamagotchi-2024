@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Routes>
+        <Switch>
           <Route path='/' element={<Login />} /> // Startseite zur Login-Seite
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
@@ -24,7 +24,7 @@ function App() {
           <Route path='/petpage' element={<PetPage />} />
           <Route path='/mainpage' element={<MainPage />} />
           <Route path='/*' element={<NotFound />} />
-        </Routes>
+        </Switch>
       </div>
     </Router>
   );
