@@ -42,7 +42,7 @@ function Register() {
 
 try {
 
-  const response = await fetch(`http://35.159.51.51:3000/register`, {
+  const response = await fetch(`http://localhost:3000/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
