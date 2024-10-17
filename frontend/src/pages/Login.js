@@ -6,6 +6,8 @@ const users = {
   'user@example.com': { password: 'pass123', username: 'user' }
 };*/
 
+const apiUrl = 'http://localhost:5000'
+
 function Login() {
 
   const [email, setEmail] = useState('');
@@ -53,7 +55,7 @@ function Login() {
   useEffect(() => {
     const loginUser = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/login`, {
+        const response = await fetch(`${apiUrl}/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -93,7 +95,7 @@ function Login() {
 
   const checkUserPet = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/check-user-pet`, {
+      const response = await fetch(`${apiUrl}/check-user-pet`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
