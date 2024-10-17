@@ -53,7 +53,7 @@ function Login() {
   useEffect(() => {
     const loginUser = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/login`, {
+        const response = await fetch(`http://localhost:5000/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ function Login() {
 
   const checkUserPet = async () => {
     try {
-      const response = await fetch(`http://localhost/check-user-pet`, {
+      const response = await fetch(`http://localhost:5000/check-user-pet`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
