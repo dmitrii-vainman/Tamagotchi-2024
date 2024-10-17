@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /*Dummy-Datenbank
 const users = {
@@ -14,6 +14,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [shouldLogin, setShouldLogin] = useState(false);//Zustand für den Login
+  const navigate = useNavigate()
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -52,7 +53,7 @@ function Login() {
   useEffect(() => {
     const loginUser = async () => {
       try {
-        const response = await fetch(`http://35.159.51.51:3000/login`, {
+        const response = await fetch(`http://localhost:3000/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -69,6 +70,8 @@ function Login() {
           setMessage('Login erfolgreich!');
           setEmail('');
           setPassword('');
+
+          checkUserPet();
         } else {
           setMessage(data.error || 'Login fehlgeschlagen!');
           setPassword('');
@@ -88,6 +91,37 @@ function Login() {
   
   [shouldLogin, email, password]); // Abhängigkeiten von useEffect
 
+  const checkUserPet = async () => {
+    try {
+      const response = await fetch(`http://localhost/check-user-pet`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+      });
+
+
+      const data = await response.json();
+
+      if (data.hasPet) {
+        navigate('/mainpage');
+      } else {
+        navigate('/petpage')
+      }
+  } catch(error) {
+    console.error('Fehler beim Überprüfen der Daten', error)
+    setMessage('Ein Fehler ist aufgetreten. Bitte versuche es erneut.')
+  }
+}
+  
+  const handleSubmitLogin = () => {
+    const confirmation = window.confirm("Sind Sie sicher, dass Sie die Daten speichern möchten?");
+    if (!confirmation) {
+      console.log('Speichern abgebrochen');
+    }; 
+}  
+  
 
   return (
     <div className="login-container">
@@ -121,7 +155,7 @@ function Login() {
           </div>
         )}
 
-        <button type="submit" disabled={!email || !password || loading}>
+        <button type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
           {loading ? 'Lade...' : 'Login'}
         </button>
 
@@ -131,6 +165,7 @@ function Login() {
 
       <p><Link to="/register">Registrierung</Link></p>
       <p><Link to="/impressum">Impressum</Link></p>
+      <p><Link to="/mainpage">Home</Link></p>
     </div>
   );
 };
