@@ -75,7 +75,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
           </div>
         </div>
 
-        {/* VirtualPet-Komponente */}
+        {/* VirtualPet-Komponente! */}
         <VirtualPet hunger={hunger} setHunger={setHunger} />
 
         <p>
