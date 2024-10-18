@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PetImage from '../components/petImage';
+import VirtualPet from '../components/petFeed';
 import { Link } from 'react-router-dom';
 
 const MainPage = ({ petType, selectedColor, petName }) => {
@@ -27,25 +28,27 @@ const MainPage = ({ petType, selectedColor, petName }) => {
 
       {/* Affection bar */}
       <div style={{ marginTop: '20px', width: '300px', backgroundColor: '#ddd', height: '20px', borderRadius: '10px' }}>
-        <div style={{
-          width: `${affection * 10}%`, 
-          backgroundColor: colorA, 
-          height: '100%', 
-          borderRadius: '10px'
-        }} />
+        <div
+          style={{
+            width: `${affection * 10}%`,
+            backgroundColor: colorA,
+            height: '100%',
+            borderRadius: '10px'
+          }}
+        />
       </div>
 
       {/* Display max affection count */}
       <p style={{ marginTop: '10px' }}>Zuneigung: Level {maxAffectionCount}</p>
 
       {/* Button to increase affection */}
-      <button 
-        onClick={increaseAffection} 
+      <button
+        onClick={increaseAffection}
         style={{
-          marginTop: '20px', 
-          padding: '10px 20px', 
-          borderRadius: '50%', 
-          backgroundColor: 'white', 
+          marginTop: '20px',
+          padding: '10px 20px',
+          borderRadius: '50%',
+          backgroundColor: 'white',
           cursor: 'pointer',
           fontSize: '16px',
         }}
