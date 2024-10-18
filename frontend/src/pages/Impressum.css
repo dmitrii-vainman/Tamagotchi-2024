@@ -1,0 +1,67 @@
+/* Impressum Page Styles */
+.impressum-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full height */
+    background-color: #121212; /* Dark background */
+    padding: 20px; /* Add some padding */
+  }
+  
+  /* Frame for the Impressum content */
+  .impressum-frame {
+    background-color: #1a1a1a; /* Slightly lighter black */
+    border-radius: 10px; /* Rounded corners */
+    padding: 30px; /* Padding inside the frame */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  }
+  
+  /* Heading Styles */
+  .impressum-frame h1 {
+    font-size: 3rem; /* Large font size for logo */
+    color: #e0e0e0; /* Light color for contrast */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    margin-bottom: 1em; /* Space below the logo */
+  }
+  
+  .impressum-frame h2 {
+    font-size: 2rem; /* Medium size for the subheading */
+    color: #e0e0e0; /* Light color for readability */
+    margin-bottom: 1em; /* Space below the heading */
+  }
+  
+  /* Paragraph Styles */
+  .impressum-frame p {
+    color: #e0e0e0; /* Light color for text */
+    margin: 10px 0; /* Vertical spacing for paragraphs */
+    text-align: center; /* Centered text */
+  }
+  
+  /* Link Styles */
+  .impressum-frame a {
+    color: #888888; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  /* Link Hover Effect */
+  .impressum-frame a:hover {
+    color: #aaaaaa; /* Lighter color on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .impressum-frame h1 {
+      font-size: 2.5rem; /* Smaller logo size on smaller screens */
+    }
+    
+    .impressum-frame h2 {
+      font-size: 1.5rem; /* Smaller subheading size */
+    }
+    
+    .impressum-frame p {
+      font-size: 0.9rem; /* Slightly smaller font size for paragraphs */
+    }
+  }
+  
