@@ -14,12 +14,21 @@ function App() {
   useEffect(() => {
     document.title = 'SnuggleBuddy'; // Titel des Tabs
   }, []);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1d2302d606a7aca608d055442b1542ef09ccd81a
   return (
+
     <Router>
       <div>
         <Routes>
+<<<<<<< HEAD
 
           <Route path='/' element={<Login />} /> // Startseite zur Login-Seite
+=======
+          <Route path='/' element={<Login />} /> // Startseite
+>>>>>>> 1d2302d606a7aca608d055442b1542ef09ccd81a
           <Route path='/login' element={<Login />} />
           <Route path='/petfeed' element={<VirtualPet />} />
           <Route path='/register' element={<Register />} />
@@ -30,6 +39,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+
   );
 }
 

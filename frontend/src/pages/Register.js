@@ -56,7 +56,7 @@ if (response.ok) {
   setMessage('Registrierung erfolgreich!');
   setFormData({email: '', password: '', confirmPassword: '', username: ''});
   setTimeout(() => {
-  navigate('/login')}, 2000);
+  navigate('/login')}, 1000);
 } else { 
   setMessage(data.error || 'Registrierung fehlgeschlagen!')
 }
@@ -138,6 +138,6 @@ if (response.ok) {
   <p><Link to="/impressum">Impressum</Link></p>
 
 </div>
-)}
+)};
 
 export default Register;
