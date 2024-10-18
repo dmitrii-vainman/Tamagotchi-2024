@@ -14,10 +14,17 @@ const jwtSecret = process.env.JWT_SECRET;
 const app = express();
 const port = 5000;
 
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST'], 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 const __dirname = path.resolve(); // Falls du Node.js Version >=14 hast
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 
-app.use(cors());
+
 app.use(express.json());
 
 // Middleware zur Token-Verifizierung
@@ -30,6 +37,7 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token.split(' ')[1], process.env.JWT_SECRET, (err, user) => {  // Geheimschlüssel aus Umgebungsvariable
     if (err) {
+      console.log('Fehlgeschlagen:', err);
       return res.status(403).json({ error: 'Token ungültig oder abgelaufen' });
     }
 
@@ -51,27 +59,60 @@ app.post('/register', async (req, res) => {
     res.status(201).json({ message: 'Registrierung erfolgreich!' });
   });
 });
-
 // Login-Endpoint
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-
   const sql = 'SELECT * FROM users WHERE email = ?';
   db.get(sql, [email], (err, user) => {
     if (err || !user) {
       return res.status(401).json({ error: 'Benutzer nicht gefunden' });
     }
-
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
       return res.status(401).json({ error: 'Ungültiges Passwort' });
     }
-
-    // JWT erzeugen
+      // JWT erzeugen
     const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token });
+    return res.status(200).json({
+      message: 'Login erfolgreich!',
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      }
+    });
   });
 });
+app.get('/check-user-pet', verifyToken, (req, res) => {
+  const petSql = 'SELECT * FROM pets WHERE user_id = ?';
+  db.all(petSql, [req.user.id], (err, pets) => {
+    if (err) {
+      console.log("Fehler beim Abrufen der Haustiere", err);
+      return res.status(500).json({ error: 'Fehler beim Abrufen der Haustiere' });
+   }
+   return res.status(200).json({
+    hesPet: pets.length > 0
+   });
+});
+});
+//Haustier erstellen Endpoint
+app.post('/create-pet', verifyToken, (req, res) => {
+  const { petname, species, type, age, food }  = req.body;
+
+  if(!petname || !species || !type || !age || !food){
+    return res.status(400).json({ error: 'Bitte alle Felder ausfüllen'})
+    }
+
+  const sqlpet = 'INSERT INTO pets (petname, species, type, age, food, user_id) VALUES (?, ?, ?, ?, ?, ?)';
+  db.run(sqlpet, [petname, species, type, age, food, req.user.id], (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Fehler beim Speichern des Haustiers!' });
+    }
+    res.status(202).json({ message: 'Haustier erfolgreich gespeichert!' });
+  });
+});
+
 
 // Geschützter Endpunkt
 app.get('/protected-endpoint', verifyToken, (req, res) => {

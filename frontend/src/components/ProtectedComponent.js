@@ -37,7 +37,7 @@ const ProtectedComponent = () => {
   return (
     <div>
       {message}
-      <button onClick={handleLogout}>Logout</button> {/* Logout-Button */}
+      <button className="LogoutButton" onClick={handleLogout}>Logout</button> {/* Logout-Button */}
     </div>
   );
 };
