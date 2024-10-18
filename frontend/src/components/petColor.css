@@ -1,0 +1,33 @@
+.color-picker {
+  margin-bottom: 20px; /* Add spacing below the color picker */
+  margin-top: 10px;
+}
+
+
+.color-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-top: 5px; /* Space above buttons */
+}
+
+.color-button {
+  margin-top: auto;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  border-radius: 50%; /* Make buttons circular */
+  border: 2px solid grey; /* Default border color */
+  transition: border 0.2s; /* Smooth transition for border change */
+  display: flex; /* Use flexbox for centering */
+  align-items: center; /* Vertically center text */
+  justify-content: center; /* Horizontally center text */
+  color: white; /* Button text color */
+  font-weight: bold; /* Make text bold for better visibility */
+  font-size: large;
+  outline: 1px solid #000000; /* White outline */
+  outline-offset: -3px;
+}
+
+.color-button.selected {
+  border: 3px solid black; /* Highlight selected color with a thicker border */
+}

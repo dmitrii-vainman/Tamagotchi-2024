@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import PetColorPicker from './petColor';
+import './petDetails.css';
 
-const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setPetName }) => { // Add petType as a prop
+const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setPetName }) => { 
   const [age, setAge] = useState('');
   const [snack, setSnack] = useState('');
 
   const handlePetTypeChange = (e) => {
     const selectedType = e.target.value;
-    updatePetType(selectedType); // Call the function passed as prop
+    updatePetType(selectedType);
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="pet-form">
       <h2>Erstelle deinen Snuggle Buddy!</h2>
 
-      <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+      <div className="form-group-typ">
         <label>Typ: </label>
-        <select value={petType} onChange={handlePetTypeChange}> {/* Use petType prop here */}
+        <select className="form-select" value={petType} onChange={handlePetTypeChange}>
           <option value="">--Wähle einen Typ--</option>
           <option value="dog">Hund</option>
           <option value="cat">Katze</option>
@@ -25,19 +26,21 @@ const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setP
       </div>
 
       <PetColorPicker selectedColor={selectedColor} setSelectedColor={setSelectedColor} />
-      
-      <div>
+
+      <div className="form-group">
         <label>Name: </label>
         <input
+          maxLength="20"
           type="text"
           onChange={(e) => setPetName(e.target.value)}
           placeholder="Name: "
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Alter:</label>
         <input
+          maxLength="3"
           type="number"
           value={age}
           onChange={(e) => setAge(e.target.value)}
@@ -45,9 +48,10 @@ const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setP
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Lieblingsessen:</label>
         <input
+          maxLength="20"
           type="text"
           value={snack}
           onChange={(e) => setSnack(e.target.value)}
