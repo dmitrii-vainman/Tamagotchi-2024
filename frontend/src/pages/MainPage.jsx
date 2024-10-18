@@ -5,17 +5,18 @@ import { Link } from 'react-router-dom';
 
 const MainPage = ({ petType, selectedColor, petName }) => {
   const [affection, setAffection] = useState(0);
+  const [maxAffectionCount, setMaxAffectionCount] = useState(0); // Track max affection reached
   const [colorA, setColorA] = useState('lightgreen');
-  const [hunger, setHunger] = useState(100);
 
   const increaseAffection = () => {
     if (affection >= 10) {
-      setAffection(10);
-      setColorA('lightcoral');
+      setAffection(0); // Reset affection to 0
+      setMaxAffectionCount(maxAffectionCount + 1); // Increase the count of times max affection is reached
+      setColorA('lightgreen'); // Reset bar color
     } else {
       setAffection(affection + 1);
-      if (affection + 1 >= 10) { // Since we're multiplying by 10 for the bar width, 10 * 10 = 100%
-        setColorA('lightcoral');
+      if (affection + 1 === 10) {
+        setColorA('lightcoral'); // Change bar color at max affection
       }
     }
   };
@@ -36,6 +37,9 @@ const MainPage = ({ petType, selectedColor, petName }) => {
           }}
         />
       </div>
+
+      {/* Display max affection count */}
+      <p style={{ marginTop: '10px' }}>Zuneigung: Level {maxAffectionCount}</p>
 
       {/* Button to increase affection */}
       <button
@@ -82,6 +86,9 @@ const MainPage = ({ petType, selectedColor, petName }) => {
           <Link to="/impressum">Impressum</Link>
         </p>
       </div>
+
+      <p><Link to="/impressum">Impressum</Link></p>
+      
     </div>
   );
 };
