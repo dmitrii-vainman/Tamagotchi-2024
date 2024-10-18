@@ -51,7 +51,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
       >
         🌭🍏🍕
       </button>
-      <p>Zuneigung: {affection}</p>
+      {affection}
 
       {/* Hunger Bar */}
       <div>
