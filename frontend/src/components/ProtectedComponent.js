@@ -35,9 +35,25 @@ const ProtectedComponent = () => {
   };
 
   return (
-    <div>
-      {message}
-      <button onClick={handleLogout}>Logout</button> {/* Logout-Button */}
+    <div
+      style={{ textAlign: 'center', marginTop: '20px' }}
+    >
+      <p>{message || 'Lade geschützte Daten...'}</p>
+      
+      <button 
+        onClick={handleLogout} 
+        style={{
+          padding: '10px 20px',                
+          backgroundColor: 'black',          
+          color: 'white',                      
+          border: '2px solid white',                      
+          borderRadius: '10px',                 
+          cursor: 'pointer',                   
+          marginTop: '20px'                    
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };
