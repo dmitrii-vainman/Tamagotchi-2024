@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PetImage from '../components/petImage';
 import VirtualPet from '../components/petFeed';
 import { Link } from 'react-router-dom';
@@ -51,6 +51,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
       >
         🌭🍏🍕
       </button>
+      {affection}
 
       {/* Hunger Bar */}
       <div>
@@ -62,7 +63,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
             className="progress"
             style={{
               width: `${hunger}%`,
-              backgroundColor: hunger > 50 ? 'darkgreen' : 'lightcoral', // Color change depending on hunger level
+              backgroundColor: hunger > 50 ? 'darkgreen' : 'firebrick', // Color change depending on hunger level
               height: '100%',
               borderRadius: '10px',
               transition: 'width 0.5s ease-in-out'  
