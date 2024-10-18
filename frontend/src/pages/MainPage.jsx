@@ -56,7 +56,39 @@ const MainPage = ({ petType, selectedColor, petName }) => {
         🌭🍏🍕
       </button>
 
+      {/* Hunger Bar */}
+      <div>
+        <h2>Hungerstatus: {hunger}</h2>
+
+        {/* Fortschrittsbalken */}
+        <div className="progress-bar" style={{ width: '300px', backgroundColor: '#ddd', borderRadius: '10px', height: '20px' }}>
+          <div
+            className="progress"
+            style={{
+              width: `${hunger}%`,
+              backgroundColor: hunger > 50 ? 'darkgreen' : 'lightcoral', // Color change depending on hunger level
+              height: '100%',
+              borderRadius: '10px',
+              transition: 'width 0.5s ease-in-out'  
+            }}
+            aria-valuenow={hunger}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            {hunger}%  {/* Hungeranzeige innerhalb des Balkens */}
+          </div>
+        </div>
+
+        {/* VirtualPet-Komponente! */}
+        <VirtualPet hunger={hunger} setHunger={setHunger} />
+
+        <p>
+          <Link to="/impressum">Impressum</Link>
+        </p>
+      </div>
+
       <p><Link to="/impressum">Impressum</Link></p>
+      
     </div>
   );
 };
