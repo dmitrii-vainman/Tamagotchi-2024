@@ -21,7 +21,7 @@ const VirtualPet = ({hunger, setHunger}) => {
         setHunger(prevHunger => Math.min(prevHunger + 15, 100));
     };
 
-//Buttons sind erst einmal Prototypen!!
+//Buttons sind erst einmal Prototypen!
     return (
 
         <div>
