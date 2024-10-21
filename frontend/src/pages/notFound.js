@@ -6,12 +6,13 @@ function NotFound() {
     return (
 
         <div>
-            <h2>Seite nicht gefunden!</h2>
+            <h2>Fehler! Die Seite wurde nicht gefunden!</h2>
 
     
-
+            
             <p><Link to="/login">Einloggen</Link></p>
             <p><Link to="/register">Registrierung</Link></p>
+            <p><Link to="/impressum">Impressum</Link></p>
 
         </div>
     )
