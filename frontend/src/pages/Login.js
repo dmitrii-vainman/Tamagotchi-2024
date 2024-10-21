@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 /*Dummy-Datenbank
@@ -51,9 +51,8 @@ function Login() {
       return;
     }
     setShouldLogin(true)
-  }
-  useEffect(() => {
-    const loginUser = async () => {
+  
+
       try {
         const response = await fetch(`${apiUrl}/login`, {
           method: 'POST',
@@ -63,12 +62,16 @@ function Login() {
           body: JSON.stringify({ email, password }),
         });
 
+        console.log("API Response Status:", response.status); // Status der Antwort
+        console.log("API Response Body:", await response.clone().json()); // Antwort-Body
+        console.log("Fehler", response)
         const data = await response.json();
+        console.log("Fehler", data)
 
         if (response.ok) {
           // Speichere den Token in localStorage oder einer anderen sicheren Stelle
           localStorage.setItem('token', data.token);
-          setUsername(data.username);
+          setUsername(data.user.username);
           setMessage('Login erfolgreich!');
           setEmail('');
           setPassword('');
@@ -79,19 +82,12 @@ function Login() {
           setPassword('');
         }
       } catch (error) {
+        console.error('Fehler beim Überprüfen der Daten', error)
         setMessage('Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
       } finally {
         setLoading(false);
-        setShouldLogin(false); // Zurücksetzen nach dem Login-Versuch
       }
     };
-
-    if (shouldLogin) {
-      loginUser();
-    }
-  }, 
-  
-  [shouldLogin, email, password]); // Abhängigkeiten von useEffect
 
   const checkUserPet = async () => {
     try {
@@ -123,7 +119,6 @@ function Login() {
       console.log('Speichern abgebrochen');
     }; 
 }  
-  
 
   return (
     <div className="login-container">
@@ -175,4 +170,3 @@ function Login() {
 };
 
 export default Login;
-//hi

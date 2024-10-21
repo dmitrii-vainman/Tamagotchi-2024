@@ -8,16 +8,18 @@ import MainPage from "./pages/MainPage.jsx"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
+
 function App() {
   useEffect(() => {
     document.title = 'SnuggleBuddy'; // Titel des Tabs
   }, []);
-{/* hi */}
+
   return (
+
     <Router>
       <div>
         <Routes>
-          <Route path='/' element={<Login />} /> // Startseite zur Login-Seite
+          <Route path='/' element={<Login />} /> // Startseite
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/impressum' element={<Impressum />} />
@@ -27,6 +29,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+
   );
 }
 

@@ -59,44 +59,41 @@ app.post('/register', async (req, res) => {
     res.status(201).json({ message: 'Registrierung erfolgreich!' });
   });
 });
-
 // Login-Endpoint
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-
   const sql = 'SELECT * FROM users WHERE email = ?';
   db.get(sql, [email], (err, user) => {
     if (err || !user) {
       return res.status(401).json({ error: 'Benutzer nicht gefunden' });
     }
-  
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
       return res.status(401).json({ error: 'Ungültiges Passwort' });
     }
-
-    const petSql = 'SELECT * FROM pets WHERE user_id = ?';
-    db.all(petSql, [user.id], (err, pets) => {
-      if (err) {
-        console.log("Fehler beim Abrufen der Haustiere", err);
-        return res.status(500).json({ error: 'Fehler beim Abrufen der Haustiere' });
-     }
-
       // JWT erzeugen
     const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    
-    
     return res.status(200).json({
       message: 'Login erfolgreich!',
-      token,  
+      token,
       user: {
         id: user.id,
         username: user.username,
         email: user.email,
-        pets: pets.length > 0 ? pets : [], 
       }
     });
   });
+});
+app.get('/check-user-pet', verifyToken, (req, res) => {
+  const petSql = 'SELECT * FROM pets WHERE user_id = ?';
+  db.all(petSql, [req.user.id], (err, pets) => {
+    if (err) {
+      console.log("Fehler beim Abrufen der Haustiere", err);
+      return res.status(500).json({ error: 'Fehler beim Abrufen der Haustiere' });
+   }
+   return res.status(200).json({
+    hesPet: pets.length > 0
+   });
 });
 });
 //Haustier erstellen Endpoint

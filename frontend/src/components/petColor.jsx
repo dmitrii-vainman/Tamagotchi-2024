@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './petColor.css'; // Create a CSS file for the color picker
 
 const PetColorPicker = ({ selectedColor, setSelectedColor }) => {
-
-  const colors = ['#ed5345','#6bd694'];
+  const colors = ['#ed5345', '#6bd694'];
 
   return (
-    <div>
-      <label>Wähle eine Variante: </label>
-      <div style={{ display: 'flex', gap: '10px', marginTop: '10px', }}>
+    <div className="color-picker">
+      <label className="label">Wähle eine Variante: </label>
+      <div className="color-buttons">
         {colors.map((color, index) => (
           <button
             key={color}
+            className={`color-button ${selectedColor === color ? 'selected' : ''}`}
             style={{
               backgroundColor: color,
-              border: selectedColor === color ? '3px solid black' : '2px solid grey',
-              height: '30px',
-              width: '30px',
-              cursor: 'pointer',
-              borderRadius: '30%',
             }}
             onClick={() => setSelectedColor(color)}
-          >{index +1}</button>
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>
