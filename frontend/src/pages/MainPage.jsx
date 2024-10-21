@@ -1,8 +1,12 @@
 // src/pages/MainPage.jsx
 import React, { useState } from 'react';
 import PetImage from '../components/petImage';
+
 import AffectionMeter from '../components/affection';
 import RewardShop from '../components/rewards';
+import VirtualPet from '../components/petFeed';
+import { Link } from 'react-router-dom';
+
 
 const MainPage = ({ petType, selectedColor, petName }) => {
   const [level, setLevel] = useState(1);
@@ -15,6 +19,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
   };
 
   return (
+
     <div style={{ background: background, minHeight: '100vh', padding: '20px' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PetImage petType={petType} selectedColor={selectedColor} petName={petName} backgroundColor="#ffeb3b" />
@@ -37,6 +42,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
           </div>
         )}
       </div>
+
     </div>
   );
 };
