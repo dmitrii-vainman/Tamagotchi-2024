@@ -1,13 +1,65 @@
-/* Grundlegende Stile für den Body */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif, 'Chiller', cursive;
   background-color: #121212;
   color: #e0e0e0;
+  margin: 0;
+  line-height: 1.6;
+  overflow-x: hidden; /* Verhindert horizontales Scrollen */
+  box-sizing: border-box; /* Inkludiere Padding und Border in der Breite */
+}
+
+/* Um sicherzustellen, dass das Box-Sizing auf alle Elemente angewendet wird */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.login-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  height: 100%; 
+}
+
+/* Container Register Componente */
+.register-container {
+  max-width: 1200px;
+  margin: 0 auto; /* Horizontale Zentrierung */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertikal zentrieren */
+  align-items: center; /* Horizontal zentrieren */
+  height: 100vh; /* Vollständige Höhe des Viewports für Zentrierung */
+}
+
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertikal zentrieren */
+  align-items: center; /* Horizontal zentrieren */
+  min-height: 100vh; /* 100% der Höhe */
+  padding: 40px;
+  background-color: #121212;
+  width: 100%;
+  position: relative; /* Absolute Positionierung */
+}
+
+.logo {
+  font-size: 3rem;
+  color: #e0e0e0; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Schatteneffekt */
+  transition: transform 0.3s ease; /* Übergangseffekt */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Vergrößert das Logo beim Hover */
 }
 
 /* Stil für Formulare */
@@ -17,7 +69,10 @@ form {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   width: 300px;
-  max-width: 100%; /* Responsive Breite */
+  max-width: 100%;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Stil für Labels */
@@ -35,9 +90,9 @@ input[type="password"] {
   background-color: #333333;
   color: #e0e0e0;
   border: 1px solid #444444;
-  width: 93%;
+  width: 100%;
   padding: 10px;
-  margin: 8px 0;
+  margin: 5px 0;
   border-radius: 4px;
   transition: border-color 0.3s; /* Übergang für den Rahmen */
 }
@@ -48,10 +103,10 @@ input:focus {
   outline: none; /* Entferne den Standard-Outline */
 }
 
-/* Stil für Buttons */
-button {
+/* Stil für Formular - Buttons */
+.register-button, .login-button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #555555;
   color: #e0e0e0;
   border: none;
@@ -59,6 +114,7 @@ button {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s; /* Übergang für den Hintergrund */
+  margin-top: 10px;
 }
 
 /* Button Hover-Effekt */
@@ -68,10 +124,10 @@ button:hover {
 
 /* Loader-Stil */
 .loader {
-  border-top: 7px solid rgb(207, 158, 85);
-  border-right: 7px solid rgb(179, 178, 133);
-  border-bottom: 7px solid rgb(62, 58, 58);
-  border-left: 7px solid rgb(230, 218, 213);
+  border-top: 7px solid rgba(4, 168, 180, 1);
+  border-right: 7px solid rgba(255, 181, 48, 1);
+  border-bottom: 7px solid rgba(243, 88, 122, 1);
+  border-left: 7px solid rgba(161, 102, 170, 1);
   border-radius: 50%;
   width: 25px;
   height: 25px;
@@ -93,42 +149,45 @@ button:hover {
   margin-bottom: 20px;
 }
 
-
 p.message, .error {
   color: #ff5555;
 }
-
 
 .success {
   color: #55ff55;
 }
 
-/* Stil für allgemeine Absätze */
 p {
   margin-top: 15px;
   text-align: center;
   color: #e0e0e0;
 }
 
-/* Stil für Links */
 a {
   color: #888888;
   text-decoration: none;
 }
 
-h2 {
-margin-bottom: 15px;
-
-}
-/* Hover-Effekt für Links */
 a:hover {
   color: #aaaaaa;
 }
 
+h2 {
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #e0e0e0;
+}
+
 /* Responsive Layout */
-@media (max-width: 400px) {
+@media (max-width: 1024px) {/*flex Anzeige für Tablets*/
+  .container {
+    padding: 10px;
+  }
+
   form {
-    width: 90%; /* Breite des Formulars für kleine Bildschirme */
+    width: 100%; 
+    max-width: 90%; 
   }
 
   button {
@@ -136,24 +195,171 @@ a:hover {
   }
 }
 
+@media (max-width: 768px) {
+  .loader-container, .register-container {
+    max-width: 100%;
+    padding: 10px;
+  }
 
-.app {
+  form {
+    padding: 20px;
+  }
+  .logo {
+    font-size: 2.5rem; /* Kleinere Schriftgröße auf mobilen Geräten */
+  }
+  button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .loader-container, .register-container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .app {
+    padding: 20px;
+  }
+
+  form {
+    width: 100%; /* Maximale Breite auf sehr kleinen Bildschirmen */
+    max-width: 100%;
+  }
+
+  button {
+    font-size: 14px; /* Kleinere Schriftgröße für Buttons */
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+}
+
+.heart-button {
+  background-color: transparent; /* Hintergrund transparent */
+  border: none; /* Keine Umrandung */
+  font-size: 40px; /* Größe des Herz-Emojis */
+  cursor: pointer; /* Cursor wird zur Hand */
+  transition: transform 0.3s ease; /* Übergang für den Hover-Effekt */
+  outline: none; /* Kein Umriss beim Fokussieren */
+}
+
+.heart-button:hover {
+  transform: scale(1.2); /* Button vergrößern beim Hover */
+  background-color: transparent;
+}
+
+.food-buttons {
+  display: flex;
+  gap: 10px; /* Abstand zwischen den Buttons */
+  margin-top: 10px;
+}
+
+.food-button1,
+.food-button2,
+.food-button3 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 40px;
+  transition: transform 0.3s ease;
+  outline: none;
+  display: flex;
+}
+
+.food-button1:hover,
+.food-button2:hover,
+.food-button3:hover {
+  transform: scale(1.2); /* Vergrößerung beim Hover */
+  background-color: transparent;
+}
+
+.food-button1:disabled, .food-button2:disabled, .food-button3:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.hunger-status {
+  color: #a0430e;
+}
+
+.progress-bar {
+  width: 300px; /* Maximalbreite */
+  max-width: 100%; /* Verhindert, dass die Leiste über die Breite des Containers hinausgeht */
+  background-color: #ddd;
+  border-radius: 10px;
+  height: 20px;
+  position: relative; /* Für den Schatten */
+  overflow: hidden; /* Verhindert Überlauf */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4); /* Innerer Schatten */
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+.percentage {
+  position: absolute; /* Absolute Positionierung */
+  left: 50%; /* Zentriert horizontal */
+  top: 50%; /* Zentriert vertikal */
+  transform: translate(-50%, -50%); /* Korrektur für die zentrierte Position */
+  color: rgb(5, 5, 5); /* Textfarbe */
+  font-weight: bold; /* Fettdruck für den Text */
+}
+
+/* Level-Status Links Oben */
+.level-status {
+  position: absolute;
+  top: 10px;
+  left: 20px; /* Verschieben nach links */
+  font-size: 18px;
+  background-color: transparent;
+  color: white;
+  font-family: 'Chiller', cursive;
+  display: flex;
+}
+
+/* Neue Klasse für Impressum */
+
+.impressum {
+  position: absolute; /* Absolut positioniert */
+  bottom: 20px; /* Abstände vom unteren Rand */
+  left: 50%; /* Horizontale Zentrierung */
+  transform: translateX(-50%); /* Korrektur für die zentrierte Position */
+  color: #e0e0e0; /* Textfarbe */
+  font-size: 18px; /* Schriftgröße */
+  text-align: center; /* Text zentriert */
+}
+
+.affection-container {
+  position: absolute;
+  bottom: 20px; /* Positionierung nach unten */
+  right: 20px;  /* Positionierung nach rechts */
+  display: flex;
+  flex-direction: column; /* Elemente untereinander anordnen */
+  align-items: center; /* Zentriert die Kinder horizontal */
+}
+
+.hunger-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
+}
+
+.pet-container {
+  position: relative; /* relative positioniert, damit child Elemente absolut positioniert werden können */
+  width: 100%; 
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 100vh; /* Vollbildhöhe */
-  background-color: #121212; /* Dunkler Hintergrund */
+  justify-content: center;
 }
-
-.logo {
-  font-size: 3rem; /* Schriftgröße */
-  color: #e0e0e0; /* Schriftfarbe */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Schatteneffekt */
-  transition: transform 0.3s ease; /* Übergangseffekt */
-}
-
-.logo:hover {
-  transform: scale(1.1); /* Vergrößert das Logo beim Hover */
-}
-

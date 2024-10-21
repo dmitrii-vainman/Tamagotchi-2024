@@ -153,7 +153,7 @@ function Login() {
           </div>
         )}
 
-        <button type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
+        <button className="login-button" type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
           {loading ? 'Lade...' : 'Login'}
         </button>
 

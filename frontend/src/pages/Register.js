@@ -68,7 +68,7 @@ if (response.ok) {
 }
 };
   return (
-    <div>
+    <div className="register-container">
     <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
     <form onSubmit={handleSubmit}>
 
@@ -126,7 +126,7 @@ if (response.ok) {
           <div className="loader"></div></div> // Loader anzeigen, wenn loading true ist
         )}
     
-    <button type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword || !formData.username || loading}>
+    <button className="register-button "type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword || !formData.username || loading}>
      {loading ? 'Lade ...' : 'Registrierung'}</button>
 
     <p className={message.includes('erfolgreich') ? 'success' : 'error'}>{message}</p>
