@@ -8,6 +8,7 @@ const ProtectedComponent = () => {
   useEffect(() => {
     const fetchProtectedData = async () => {
       const token = localStorage.getItem('token'); // Token aus dem Local Storage holen
+      console.log("Token:", token); // Debugging: Überprüfen, ob das Token vorhanden ist
 
       try {
         const response = await fetch('http://35.159.51.51:3000/protected-endpoint', {
@@ -34,8 +35,7 @@ const ProtectedComponent = () => {
     history.push('/login'); // Zur Login-Seite weiterleiten
   };
 
-  return (
- // Inline-Stile
+  // Inline-Stile
   const headerStyle = {
     position: 'relative',
     backgroundColor: 'black',
@@ -66,4 +66,5 @@ const ProtectedComponent = () => {
     </div>
   );
 };
+
 export default ProtectedComponent;
