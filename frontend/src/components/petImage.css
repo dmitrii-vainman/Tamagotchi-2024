@@ -1,0 +1,19 @@
+/* PetImage.css */
+.pet-image-container {
+    padding: 0 260px 5px 260px;
+    width: 300px;
+    border-radius: 10px; /* Optional rounded corners */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    justify-content: center; /* Center content */
+  }
+  
+  .pet-image {
+    width: auto;
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .petBuddy {
+    color: black;
+  }
