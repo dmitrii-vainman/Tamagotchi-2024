@@ -6,7 +6,7 @@ const AffectionMeter = ({ level, setLevel, coins, setCoins }) => {
 
   const increaseAffection = () => {
     if (affection >= 10) {
-      setLevel(Math.min(level + 1, 10)); // Cap at level 10
+      setLevel(Math.min(level * 3, 10)); // Cap at level 10
       setAffection(0); // Reset affection
       setCoins(coins + level); // Reward coins based on the current level
     } else {
