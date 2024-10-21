@@ -52,7 +52,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
   return (
     <div className='pet-container'>
       {/* Hungerstatus und Fortschrittsbalken */}
-      <h2 className="hunger-status">Hungerstatus</h2>
+      <h2>Sättigungsgefühl</h2>
       <div className="progress-bar">
         <div
           className="progress"
@@ -68,19 +68,29 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
         </div>
       </div>
 
-      {/* Food-Buttons direkt unter dem Progress Bar */}
       <div className='food-buttons'>
         <button className='food-button1' onClick={food1} disabled={hunger === 100}>🥩</button>
         <button className='food-button2' onClick={food2} disabled={hunger === 100 || level < 2}>🍗</button>
         <button className='food-button3' onClick={food3} disabled={hunger === 100 || level < 3}>🍖</button>
       </div>
 
-      {/* Zeige Nachricht, wenn Level 2 oder 3 erreicht wird */}
       {showMessage && (
-                <div style={{ marginTop: '10px', padding: '10px', backgroundColor: 'darkgreen', borderRadius: '5px' }}>
-                    🎉 Glückwunsch! Du hast Level {level} erreicht und somit ein neues Essen freigeschaltet! 🥳
-                </div>
-            )}
+        <div
+          style={{
+            position: 'absolute',
+            top: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            padding: '10px',
+            backgroundColor: 'darkgreen',
+            color: 'white',
+            borderRadius: '5px',
+            zIndex: 999,
+          }}
+        >
+          🎉 Glückwunsch! Du hast ein neues Level erreicht! Lv: {level} 🥳
+        </div>
+      )}
     </div>
   );
 };

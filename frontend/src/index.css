@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif, 'Chiller', cursive;
+  font-family: 'Chiller', cursive, Arial, sans-serif;
   background-color: #121212;
   color: #e0e0e0;
   margin: 0;
@@ -281,10 +281,6 @@ h2 {
   opacity: 0.5;
 }
 
-.hunger-status {
-  color: #a0430e;
-}
-
 .progress-bar {
   width: 300px; /* Maximalbreite */
   max-width: 100%; /* Verhindert, dass die Leiste über die Breite des Containers hinausgeht */
@@ -319,21 +315,9 @@ h2 {
   left: 20px; /* Verschieben nach links */
   font-size: 18px;
   background-color: transparent;
-  color: white;
-  font-family: 'Chiller', cursive;
-  display: flex;
-}
-
-/* Neue Klasse für Impressum */
-
-.impressum {
-  position: absolute; /* Absolut positioniert */
-  bottom: 20px; /* Abstände vom unteren Rand */
-  left: 50%; /* Horizontale Zentrierung */
-  transform: translateX(-50%); /* Korrektur für die zentrierte Position */
-  color: #e0e0e0; /* Textfarbe */
-  font-size: 18px; /* Schriftgröße */
-  text-align: center; /* Text zentriert */
+  color: #a0430e;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .affection-container {
