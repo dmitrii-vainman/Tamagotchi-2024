@@ -35,11 +35,35 @@ const ProtectedComponent = () => {
   };
 
   return (
+ // Inline-Stile
+  const headerStyle = {
+    position: 'relative',
+    backgroundColor: 'black',
+    padding: '10px',
+  };
+
+  const buttonStyle = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    backgroundColor: 'black',
+    color: 'white',
+    border: '2px solid white',
+    borderRadius: '10px',
+    padding: '5px 10px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s',
+  };
+
+  const buttonHoverStyle = {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)', // Hover-Effekt
+  };
+
+  return (
     <div>
       {message}
-      <button className="LogoutButton" onClick={handleLogout}>Logout</button> {/* Logout-Button */}
+      <button onClick={handleLogout}>Logout</button> {/* Logout-Button */}
     </div>
   );
 };
-
 export default ProtectedComponent;
