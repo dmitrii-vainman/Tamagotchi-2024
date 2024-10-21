@@ -1,4 +1,4 @@
-import request from 'supertest';
+/*import request from 'supertest';
 import app from '../server.js'; // Importiere die Express-App
 import db from '../db/database.js'; // Importiere die Datenbank
 import bcrypt from 'bcrypt';
@@ -99,4 +99,42 @@ describe('Password Reset', () => {
         expect(response.statusCode).toBe(403);
         expect(response.body.error).toBe('Token ungültig oder abgelaufen');
     });
+});*/
+import request from 'supertest';
+import app from '../server.js';  // Importiere die Express-App
+
+describe('Password Reset', () => {
+
+  const testEmail = 'test@example.com';
+  let token = '';
+
+  it('should send a password reset link', async () => {
+    const response = await request(app)
+      .post('/api/request-reset')
+      .send({ email: testEmail });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.message).toBe('Passwort-Reset-Link gesendet!');
+  });
+
+  it('should reset the password with a valid token', async () => {
+    token = 'deinJWTTokenHier';  // Ersetze mit einem echten Token
+
+    const response = await request(app)
+      .post('/api/reset-password')
+      .send({ token, newPassword: 'newPassword123' });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.message).toBe('Passwort erfolgreich zurückgesetzt!');
+  });
+
+  it('should return an error for an invalid token', async () => {
+    const response = await request(app)
+      .post('/api/reset-password')
+      .send({ token: 'invalidToken', newPassword: 'newPassword123' });
+
+    expect(response.statusCode).toBe(403);
+    expect(response.body.error).toBe('Token ungültig oder abgelaufen');
+  });
+
 });
