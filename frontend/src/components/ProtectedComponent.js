@@ -61,24 +61,8 @@ const ProtectedComponent = () => {
 
   return (
     <div>
-<<<<<<< HEAD
       {message}
-      <button className="LogoutButton" onClick={handleLogout}>Logout</button> {/* Logout-Button */}
-=======
-      <header style={headerStyle}>
-        <button
-          style={buttonStyle}
-          onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
-          onMouseOut={(e) => e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor}
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      </header>
-      <div>
-        {message}
-      </div>
->>>>>>> viktor-jihen
+      <button onClick={handleLogout}>Logout</button> {/* Logout-Button */}
     </div>
   );
 };

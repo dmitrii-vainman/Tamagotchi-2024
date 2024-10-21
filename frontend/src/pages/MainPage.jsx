@@ -22,7 +22,7 @@ const MainPage = ({ petType, selectedColor, petName }) => {
 
     <div style={{ background: background, minHeight: '100vh', padding: '20px' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <PetImage petType={petType} selectedColor={selectedColor} petName={petName} backgroundColor="#ffeb3b" />
+      <PetImage petType={petType} selectedColor={selectedColor} petName={petName} />
 
 
         {/* Affection Meter */}
