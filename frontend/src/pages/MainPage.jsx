@@ -6,18 +6,71 @@ import VirtualPet from '../components/petFeed';
 import { Link } from 'react-router-dom';
 import XPManager from '../components/XPManager';
 
-const MainPage = ({ petType, selectedColor, petName }) => {
+
+
+const MainPage = ({ petType, selectedColor, petName, user }) => {
   const [hunger, setHunger] = useState(100);
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(1000);
   const [xp, setXp] = useState(0);  // XP-State für Level-Up
   const [background, setBackground] = useState('/images/default-bg.png');
   const [isRewardShopOpen, setRewardShopOpen] = useState(false);
-  
+  const [affection, setAffection] = useState(0);
+
+  const apiUrl = 'http://localhost:5000'
 
   const toggleRewardShop = () => {
     setRewardShopOpen(!isRewardShopOpen);
   };
+
+/*API_ENDPUNKT FETCH IST READY*/
+useEffect(() => {
+  const fetchData = async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch(`${apiUrl}/${user.id}`);
+        const data = await response.json();
+        if (response.ok) {
+          setHunger(data.hunger);
+          setAffection(data.affection);
+          setLevel(data.level);
+          setXp(data.xp)
+          setCoins(data.coins)
+          setBackground(data.background)
+        } else {
+          console.error('Fehler beim Abrufen der Daten:', response.status);
+        }
+      } catch (error) {
+        console.log('Fehler beim Abrufen der Daten:', error);
+      }
+    }
+  };
+  fetchData();
+}, [user]);
+
+useEffect(() => {
+  const saveData = async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch(`${apiUrl}/${user.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ hunger, affection, level }),
+        });
+
+        if (!response.ok) {
+          console.error('Fehler beim Speichern der Daten!');
+        }
+      } catch (error) {
+        console.log('Fehler beim Speichern:', error);
+      }
+    }
+  };
+  saveData();
+}, [hunger, affection, level, user, background, xp, coins]);
 
   return (
     <div className="app" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh' }}>

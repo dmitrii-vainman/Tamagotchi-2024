@@ -26,7 +26,7 @@ body {
 
 /* Container Register Componente */
 .register-container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto; /* Horizontale Zentrierung */
   padding: 20px;
   display: flex;
@@ -43,7 +43,7 @@ body {
   justify-content: center; /* Vertikal zentrieren */
   align-items: center; /* Horizontal zentrieren */
   min-height: 100vh; /* 100% der Höhe */
-  padding: 40px;
+  padding: 2rem;
   background-color: #121212;
   width: 100%;
   position: relative; /* Absolute Positionierung */
@@ -68,8 +68,8 @@ form {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  width: 300px;
-  max-width: 100%;
+  width: 80%;
+  max-width: 400px;
   margin: 5px 0;
   display: flex;
   flex-direction: column;
@@ -90,9 +90,9 @@ input[type="password"] {
   background-color: #333333;
   color: #e0e0e0;
   border: 1px solid #444444;
-  width: 100%;
+  width: 95%;
   padding: 10px;
-  margin: 5px 0;
+  margin: center;
   border-radius: 4px;
   transition: border-color 0.3s; /* Übergang für den Rahmen */
 }
@@ -106,7 +106,7 @@ input:focus {
 /* Stil für Formular - Buttons */
 .register-button, .login-button {
   width: 100%;
-  padding: 12px;
+  padding: 1rem;
   background-color: #555555;
   color: #e0e0e0;
   border: none;
@@ -180,21 +180,6 @@ h2 {
 }
 
 /* Responsive Layout */
-@media (max-width: 1024px) {/*flex Anzeige für Tablets*/
-  .container {
-    padding: 10px;
-  }
-
-  form {
-    width: 100%; 
-    max-width: 90%; 
-  }
-
-  button {
-    font-size: 14px; /* Kleinere Schriftgröße für Buttons */
-  }
-}
-
 @media (max-width: 768px) {
   .loader-container, .register-container {
     max-width: 100%;
@@ -238,12 +223,12 @@ h2 {
 }
 
 .heart-button {
-  background-color: transparent; /* Hintergrund transparent */
-  border: none; /* Keine Umrandung */
-  font-size: 40px; /* Größe des Herz-Emojis */
+  background-color: transparent;
+  border: none; 
+  font-size: 40px;
   cursor: pointer; /* Cursor wird zur Hand */
-  transition: transform 0.3s ease; /* Übergang für den Hover-Effekt */
-  outline: none; /* Kein Umriss beim Fokussieren */
+  transition: transform 0.3s ease; 
+  outline: none;
 }
 
 .heart-button:hover {
@@ -282,8 +267,8 @@ h2 {
 }
 
 .progress-bar {
-  width: 300px; /* Maximalbreite */
-  max-width: 100%; /* Verhindert, dass die Leiste über die Breite des Containers hinausgeht */
+  width: 80%; 
+  max-width: 400px;/* Optional, um zu verhindern, dass sie zu groß wird */
   background-color: #ddd;
   border-radius: 10px;
   height: 20px;

@@ -14,8 +14,9 @@ const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`, (err) => {
             username TEXT UNIQUE,
             email TEXT UNIQUE,
             password TEXT,
+            coins TEXT DEFAULT 0, 
             reset_token TEXT,
-            reset_token_expiry DATENAME
+            reset_token_expiry DATETIME
         )`,(err) => {
             if (err) {
                 console.log('Fehler beim Erstellen der users Tabelle" Tabelle: ' + err.message)
@@ -30,8 +31,8 @@ const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`, (err) => {
             petname TEXT,
             species TEXT,
             type TEXT,
-            age INTEGER,
-            food  TEXT,
+            hunger INTEGER DEFAULT 100,
+            level INTEGER DEFAULT 0,
             FOREIGN KEY (user_id) REFERENCES users(id)
         )`, (err) => {
             if (err) {
