@@ -1,8 +1,7 @@
-// src/components/AffectionMeter.jsx
 import React, { useState } from 'react';
 
-const AffectionMeter = ({ level, setCoins, increaseXp }) => {
-  const [affection, setAffection] = useState(0);
+const AffectionMeter = ({ level, setCoins, increaseXp, affection, setAffection }) => {
+ 
 
   const increaseAffection = () => {
     if (affection >= 10) {
