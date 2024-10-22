@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-/*Dummy-Datenbank
-const registeredEmails = ['user@example.com'];*/
-
+const apiUrl = 'http://localhost:5000'
 
 function Register() {
 
@@ -42,7 +40,7 @@ function Register() {
 
 try {
 
-  const response = await fetch(`http://localhost:5000/register`, {
+  const response = await fetch(`${apiUrl}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -73,7 +71,8 @@ if (response.ok) {
     <form onSubmit={handleSubmit}>
 
     <label htmlFor="email">E-Mail-Adresse</label>
-
+    
+<div className="input-container">
       <input
         type="email"
         id="email"
@@ -118,7 +117,7 @@ if (response.ok) {
             required
 
           /><br/><br/>
-
+</div>
 
     {loading && (
       <div className="loader-container">
