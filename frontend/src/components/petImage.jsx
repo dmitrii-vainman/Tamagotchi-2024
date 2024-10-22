@@ -24,17 +24,26 @@ const PetImage = ({ petType, selectedColor, petName }) => {
     <div 
       className="pet-image-container" 
       style={{ 
-        backgroundImage: `url(/images/bg-1.png)`, // Use backticks for template literals
-        width: '504px', 
-        height: '768px',
-        backgroundSize: 'cover', // Ensure the background covers the container
-        backgroundPosition: 'center', // Center the background image
-        position: 'relative', // Positioning for child elements
-        
+        backgroundImage: `url(/images/bg-1.png)`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center', 
+        width: '504px', // Same width as the form
+        height: '400px', // Adjust height to match form height
+        position: 'relative', 
       }}
     >
       <h2 className='petBuddy'>Dein Buddy {petName}</h2>
-      <img src={petImageSrc} alt={petType} className="pet-image" style={{ position: 'absolute', bottom: '10px' }} />
+      <img 
+        src={petImageSrc} 
+        alt={petType} 
+        className="pet-image" 
+        style={{ 
+          position: 'absolute', 
+          bottom: '10px', 
+          maxWidth: '50%', // Make the image smaller to fit well
+          height: 'auto',
+        }} 
+      />
     </div>
   );
 };
