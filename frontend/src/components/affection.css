@@ -1,0 +1,10 @@
+.affection-container {
+    width: auto; /* Keep this width consistent with the form */
+    height: auto; /* Adjust height to your preference */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Center content horizontally */
+    justify-content: center; /* Push the image towards the bottom */
+    padding: 10px; /* Padding for internal spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 2); /* Optional: adds some depth */
+}

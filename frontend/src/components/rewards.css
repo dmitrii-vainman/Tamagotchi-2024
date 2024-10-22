@@ -1,0 +1,91 @@
+.reward-shop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1f1f1f; /* Dark background for the shop */
+    padding: 20px 20px 20px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 75%;
+    max-width: 1000px; /* Increase max width for a better fit */
+    margin: auto; /* Center the shop */
+}
+
+.item-list {
+    display: flex; /* Change from grid to flex */
+    justify-content: center; /* Space items evenly */
+    flex-wrap: wrap; /* Allow items to wrap into the next line if necessary */
+    margin-top: 20px;
+    width: 100%; /* Full width for items */
+}
+
+.item {
+    background-color: #333; /* Darker background for items */
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s; /* Add a hover effect */
+    flex: 0 1 150px; /* Initial width for each item */
+    margin: 10px; /* Space between items */
+}
+
+.item:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #e0e0e0; /* Light text for headers */
+}
+
+button {
+    background-color: #5b4b4b; /* Button color */
+    color: #e0e0e0; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Button hover effect */
+}
+
+button:hover {
+    background-color: #444; /* Darker button on hover */
+}
+
+/* Media queries for responsive design */
+
+/* Tablet view */
+@media (max-width: 768px) {
+    .item-list {
+        justify-content: center; /* Center items */
+    }
+    
+    .item {
+        flex: 0 1 120px; /* Adjust item width for tablet */
+    }
+    
+    .reward-shop {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+    .item-list {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+    }
+
+    .item {
+        flex: 0 1 100%; /* Full width for items */
+        max-width: 300px; /* Ensure items don't get too wide */
+    }
+
+    .reward-shop {
+        padding: 10px; /* Reduce padding further for mobile */
+    }
+
+    button {
+        padding: 8px 12px; /* Smaller buttons on mobile */
+    }
+}

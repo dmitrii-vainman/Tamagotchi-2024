@@ -1,6 +1,9 @@
 import sqlite3 from  'sqlite3';
+import dotenv from 'dotenv';
 
-const db = new sqlite3.Database('./users.db', (err) => {
+dotenv.config();
+
+const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`, (err) => {
 
     if (err) {
         console.log('Fehler beim Öffnen der Datenbank: ' + err.message);
@@ -10,12 +13,15 @@ const db = new sqlite3.Database('./users.db', (err) => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE,
             email TEXT UNIQUE,
-            password TEXT
+            password TEXT,
+            coins TEXT DEFAULT 0, 
+            reset_token TEXT,
+            reset_token_expiry DATETIME
         )`,(err) => {
             if (err) {
-                console.log('Fehler  beim Erstellen der Tabelle: ' + err.message)
+                console.log('Fehler beim Erstellen der users Tabelle" Tabelle: ' + err.message)
             } else {
-                console.log('Tabelle erstellt')
+                console.log('Tabelle users erstellt')
             }
         });
 
@@ -25,8 +31,8 @@ const db = new sqlite3.Database('./users.db', (err) => {
             petname TEXT,
             species TEXT,
             type TEXT,
-            age INTEGER,
-            food  TEXT,
+            hunger INTEGER DEFAULT 100,
+            level INTEGER DEFAULT 0,
             FOREIGN KEY (user_id) REFERENCES users(id)
         )`, (err) => {
             if (err) {

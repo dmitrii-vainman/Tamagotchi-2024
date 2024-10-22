@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-/*Dummy-Datenbank
-const users = {
-  'user@example.com': { password: 'pass123', username: 'user' }
-};*/
-
 const apiUrl = 'http://localhost:5000'
 
 function Login() {
@@ -125,6 +120,7 @@ function Login() {
       <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">E-Mail-Adresse</label>
+        <div className="input-container">
         <input
           type="email"
           value={email}
@@ -152,8 +148,8 @@ function Login() {
             <div className="loader"></div>
           </div>
         )}
-
-        <button type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
+</div>
+        <button className="login-button" type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
           {loading ? 'Lade...' : 'Login'}
         </button>
 

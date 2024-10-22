@@ -1,12 +1,12 @@
 .pet-page-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start; /* Align form and image to the top */
   width: 100%;
   max-width: 900px; /* Adjust container width */
   margin: 0 auto; /* Center the entire form and image container */
-  padding: 20px;
-  background-color: #c8a05a; /* White background for the whole section */
+  padding: 50px;
+  background-color: #bd9858; /* White background for the whole section */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(129, 105, 105, 0.1); /* Shadow for depth */
 }
@@ -63,7 +63,7 @@ input, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40%; /* Image container takes up 40% of the width */
+  width: 50%; /* Image container takes up 40% of the width */
 }
 
 .pet-image-container img {

@@ -8,6 +8,7 @@ import MainPage from "./pages/MainPage.jsx"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
+
 function App() {
   useEffect(() => {
     document.title = 'SnuggleBuddy'; // Titel des Tabs

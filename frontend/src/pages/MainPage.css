@@ -1,0 +1,66 @@
+/* styles for the modal */
+.modal {
+    display: flex; /* Flexbox to center content */
+    position: fixed; /* Fixed position to cover the entire screen */
+    z-index: 1000; /* Sit on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  .modal-content {
+    background-color: #fefefe; /* White background for the content */
+    margin: 15px;
+    padding: 20px;
+    border: 1px solid #888; /* Border for the modal */
+    border-radius: 5px; /* Rounded corners */
+    width: 90%; /* Width of the modal content */
+    max-width: 800px; /* Increased max width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    display: flex;
+    flex-direction: column; /* Column layout for content */
+    align-items: center; /* Center content */
+  }
+  
+  .close {
+    background-color: #ff5555; /* Close button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Padding */
+    cursor: pointer; /* Cursor as pointer */
+    margin-bottom: 20px; /* Space below button */
+  }
+  
+  .close:hover {
+    background-color: #ff3333; /* Darker on hover */
+  }
+  
+  /* Placeholder item styles */
+  .placeholder-item {
+    background-color: #e0e0e0; /* Placeholder background */
+    width: 80%; /* Width of the placeholder */
+    padding: 20px; /* Padding */
+    margin: 10px 0; /* Margin */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center text */
+  }
+  
+  .button-small {
+    background-color: #555555; /* Button background */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Smaller padding */
+    cursor: pointer; /* Cursor as pointer */
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  .button-small:hover {
+    background-color: #666666; /* Darker on hover */
+  }
+  

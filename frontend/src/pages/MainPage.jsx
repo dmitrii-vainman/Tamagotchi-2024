@@ -1,90 +1,123 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PetImage from '../components/petImage';
+import AffectionMeter from '../components/affection';
+import RewardShop from '../components/rewards';
 import VirtualPet from '../components/petFeed';
 import { Link } from 'react-router-dom';
+import XPManager from '../components/XPManager';
 
-const MainPage = ({ petType, selectedColor, petName }) => {
-  const [affection, setAffection] = useState(0);
-  const [colorA, setColorA] = useState('lightgreen');
+
+
+const MainPage = ({ petType, selectedColor, petName, user }) => {
   const [hunger, setHunger] = useState(100);
+  const [level, setLevel] = useState(1);
+  const [coins, setCoins] = useState(1000);
+  const [xp, setXp] = useState(0);  // XP-State für Level-Up
+  const [background, setBackground] = useState('/images/bg-1.png');
+  const [isRewardShopOpen, setRewardShopOpen] = useState(false);
+  const [affection, setAffection] = useState(0);
 
-  const increaseAffection = () => {
-    if (affection >= 10) {
-      setAffection(10);
-      setColorA('lightcoral');
-    } else {
-      setAffection(affection + 1);
-      if (affection + 1 >= 10) { // Since we're multiplying by 10 for the bar width, 10 * 10 = 100%
-        setColorA('lightcoral');
+  const apiUrl = 'http://localhost:5000'
+
+  const toggleRewardShop = () => {
+    setRewardShopOpen(!isRewardShopOpen);
+  };
+
+/*API_ENDPUNKT FETCH IST READY*/
+useEffect(() => {
+  const fetchData = async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch(`${apiUrl}/${user.id}`);
+        const data = await response.json();
+        if (response.ok) {
+          setHunger(data.hunger);
+          setAffection(data.affection);
+          setLevel(data.level);
+          setXp(data.xp)
+          setCoins(data.coins)
+          setBackground(data.background)
+        } else {
+          console.error('Fehler beim Abrufen der Daten:', response.status);
+        }
+      } catch (error) {
+        console.log('Fehler beim Abrufen der Daten:', error);
       }
     }
   };
+  fetchData();
+}, [user]);
+
+useEffect(() => {
+  const saveData = async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch(`${apiUrl}/${user.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ hunger, affection, level }),
+        });
+
+        if (!response.ok) {
+          console.error('Fehler beim Speichern der Daten!');
+        }
+      } catch (error) {
+        console.log('Fehler beim Speichern:', error);
+      }
+    }
+  };
+  saveData();
+}, [hunger, affection, level, user, background, xp, coins]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
-      {/* Display the pet image in the middle */}
-      <PetImage petType={petType} selectedColor={selectedColor} petName={petName} />
-
-      {/* Affection bar */}
-      <div style={{ marginTop: '20px', width: '300px', backgroundColor: '#ddd', height: '20px', borderRadius: '10px' }}>
-        <div
-          style={{
-            width: `${affection * 10}%`,
-            backgroundColor: colorA,
-            height: '100%',
-            borderRadius: '10px'
-          }}
-        />
+    <div className="app" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh' }}>
+      <div className="level-status">
+        <p>XP: {xp}</p>
+        <p>Level: {level}</p>
+        <p>Coins: {coins}</p>
       </div>
-
-      {/* Button to increase affection */}
-      <button
-        onClick={increaseAffection}
-        style={{
-          marginTop: '20px',
-          padding: '10px 20px',
-          borderRadius: '50%',
-          backgroundColor: 'white',
-          cursor: 'pointer',
-          fontSize: '16px',
-        }}
-      >
-        🌭🍏🍕
-      </button>
-      {affection}
-
-      {/* Hunger Bar */}
-      <div>
-        <h2>Hungerstatus: {hunger}</h2>
-
-        {/* Fortschrittsbalken */}
-        <div className="progress-bar" style={{ width: '300px', backgroundColor: '#ddd', borderRadius: '10px', height: '20px' }}>
-          <div
-            className="progress"
-            style={{
-              width: `${hunger}%`,
-              backgroundColor: hunger > 50 ? 'darkgreen' : 'firebrick', // Color change depending on hunger level
-              height: '100%',
-              borderRadius: '10px',
-              transition: 'width 0.5s ease-in-out'  
-            }}
-            aria-valuenow={hunger}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          >
-            {hunger}%  {/* Hungeranzeige innerhalb des Balkens */}
+  
+      <div className="hunger-container">
+        <VirtualPet hunger={hunger} setHunger={setHunger} level={level} setLevel={setLevel} />
+      </div>
+  
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <PetImage petType={petType} selectedColor={selectedColor} petName={petName} />
+  
+        {/* XPManager-Component */}
+        <XPManager level={level} setLevel={setLevel} xp={xp} setXp={setXp} />
+  
+        {/* AffectionMeter-Component */}
+        <AffectionMeter 
+          affection={affection} 
+          setAffection={setAffection} 
+          level={level} 
+          setCoins={setCoins} 
+          increaseXp={() => setXp(prevXp => prevXp + 10)} // XP-Erhöhung beim Klicken
+        />
+  
+        <button onClick={toggleRewardShop} style={{ marginTop: '20px', marginBottom: '10px', padding: '10px 20px' }}>
+          {isRewardShopOpen ? 'Close Shop' : 'Open Reward Shop'}
+        </button>
+  
+        {isRewardShopOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <RewardShop currentCoins={coins} setCoins={setCoins} setBackground={setBackground} />
+            </div>
           </div>
-        </div>
-
-        {/* VirtualPet-Komponente */}
-        <VirtualPet hunger={hunger} setHunger={setHunger} />
-
-        <p>
-          <Link to="/impressum">Impressum</Link>
-        </p>
+        )}
+      </div>
+  
+      <div className="impressum">
+        <p style={{ textShadow: "1px 1px 2px black" }}><Link to="/impressum">Impressum</Link></p>
       </div>
     </div>
   );
+  
 };
 
 export default MainPage;

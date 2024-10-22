@@ -5,10 +5,12 @@ import dotenv from 'dotenv';  // dotenv importieren
 import db from './db/database.js';
 import cors  from 'cors';
 import path from 'path'
+import passwordResetRouter from './passwort_reset.js';
+
 
 dotenv.config();  // .env-Datei laden
 
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret = process.env.JWT_SECRET
 
 
 const app = express();
@@ -23,7 +25,6 @@ app.use(cors({
 
 const __dirname = path.resolve(); // Falls du Node.js Version >=14 hast
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
-
 
 app.use(express.json());
 
@@ -59,6 +60,7 @@ app.post('/register', async (req, res) => {
     res.status(201).json({ message: 'Registrierung erfolgreich!' });
   });
 });
+
 // Login-Endpoint
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -84,6 +86,8 @@ app.post('/login', async (req, res) => {
     });
   });
 });
+
+//Haustier-Abfrage
 app.get('/check-user-pet', verifyToken, (req, res) => {
   const petSql = 'SELECT * FROM pets WHERE user_id = ?';
   db.all(petSql, [req.user.id], (err, pets) => {
@@ -96,16 +100,17 @@ app.get('/check-user-pet', verifyToken, (req, res) => {
    });
 });
 });
+
 //Haustier erstellen Endpoint
 app.post('/create-pet', verifyToken, (req, res) => {
-  const { petname, species, type, age, food }  = req.body;
+  const { petname, species, type }  = req.body;
 
   if(!petname || !species || !type || !age || !food){
     return res.status(400).json({ error: 'Bitte alle Felder ausfüllen'})
     }
 
-  const sqlpet = 'INSERT INTO pets (petname, species, type, age, food, user_id) VALUES (?, ?, ?, ?, ?, ?)';
-  db.run(sqlpet, [petname, species, type, age, food, req.user.id], (err) => {
+  const sqlpet = 'INSERT INTO pets (petname, species, type, age, food, user_id) VALUES (?, ?, ?, ?)';
+  db.run(sqlpet, [petname, species, type, req.user.id], (err) => {
     if (err) {
       return res.status(500).json({ error: 'Fehler beim Speichern des Haustiers!' });
     }
@@ -118,6 +123,8 @@ app.post('/create-pet', verifyToken, (req, res) => {
 app.get('/protected-endpoint', verifyToken, (req, res) => {
   res.status(200).json({ message: 'Erfolgreich zugegriffen!' });
 });
+
+app.use('/api', passwordResetRouter);  // Verwendung des Passwort-Reset-Routers
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname,'..', 'frontend', 'build', 'index.html'));
