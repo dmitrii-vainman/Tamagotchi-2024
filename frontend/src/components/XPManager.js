@@ -11,7 +11,7 @@ const XPManager = ({ level, setLevel, xp, setXp, increaseXp }) => {
     }
   }, [xp, level, setLevel]);
 
-  return null; // kein JSX zurückgeben
+  return null; 
 };
 
 export default XPManager;

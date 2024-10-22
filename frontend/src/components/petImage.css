@@ -6,7 +6,7 @@
     flex-direction: column; /* Center content horizontally */
     justify-content: center; /* Push the image towards the bottom */
     padding: 10px; /* Padding for internal spacing */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: adds some depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 2); /* Optional: adds some depth */
 }
 
 /* Styling for the pet image itself */

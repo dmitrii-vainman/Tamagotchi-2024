@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './petFeed.css'
 
 const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
   const [playTime, setPlayTime] = useState(0);
@@ -52,8 +53,8 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
   return (
     <div className='pet-container'>
       {/* Hungerstatus und Fortschrittsbalken */}
-      <h2>Sättigungsgefühl</h2>
-      <div className="progress-bar">
+      <h2 style={{ textShadow: "1px 1px 2px black" }}>Sättigungsgefühl</h2>
+      <div className="progress-bar" > 
         <div
           className="progress"
           style={{
