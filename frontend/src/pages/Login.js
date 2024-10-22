@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-/*Dummy-Datenbank
-const users = {
-  'user@example.com': { password: 'pass123', username: 'user' }
-};*/
-
-
 const apiUrl = 'http://localhost:5000'
 
 function Login() {
