@@ -4,35 +4,40 @@ import './rewards.css'; // Ensure you create a separate CSS file for styling
 const RewardShop = ({ currentCoins, setCoins, setBackground }) => {
   // Define items with initial owned status
   const initialItems = [
-    { id: 1, name: 'Default Town', cost: 0, owned: false },
-    { id: 2, name: 'Background Gradient 1', cost: 75, owned: false },
-    { id: 3, name: 'Background Gradient 2', cost: 75, owned: false },
-    { id: 4, name: 'Background Gradient 3', cost: 75, owned: false },
-    { id: 5, name: 'Background Gradient 4', cost: 75, owned: false },
+    { id: 9, name: 'Default', cost: 0, owned: false },
+    { id: 2, name: 'bg town', cost: 75, owned: false },
+    { id: 3, name: 'bg beach', cost: 75, owned: false },
+    { id: 4, name: 'bg snow', cost: 75, owned: false },
+    { id: 5, name: 'bg cafe', cost: 75, owned: false },
     { id: 6, name: 'Background Gradient 5', cost: 75, owned: false },
     { id: 7, name: 'Background Gradient 6', cost: 75, owned: false },
     { id: 8, name: 'Background Gradient 7', cost: 75, owned: false },
-    { id: 9, name: 'Background Gradient 8', cost: 75, owned: false },
   ];
 
   const [items, setItems] = useState(initialItems);
 
   const handlePurchase = (item) => {
     if (currentCoins >= item.cost) {
+      // Deduct coins
       setCoins(currentCoins - item.cost);
       
-        setBackground(`/images/bg-${item.id}.png`); // Assuming the background images follow a pattern
+      // Update the background image based on the item's ID
+      const backgroundImage = `/images/bg-${item.id}.png`; // Make sure this path is correct
+      setBackground(backgroundImage);
       
       // Update the item to indicate it is owned
-      setItems(items.map(i => 
+      const updatedItems = items.map(i => 
         i.id === item.id ? { ...i, cost: 0, owned: true } : i
-      ));
+      );
       
+      setItems(updatedItems); // Update the state with the new items array
+  
       alert(`You bought ${item.name} for ${item.cost} coins!`);
     } else {
       alert("You don't have enough coins!");
     }
   };
+  
 
   return (
     <div className="reward-shop">
