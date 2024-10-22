@@ -10,6 +10,7 @@ const XPManager = ({ level, setLevel, xp, setXp, increaseXp }) => {
     }
   }, [xp, level, setLevel]);
 
+
   return null;
 };
 

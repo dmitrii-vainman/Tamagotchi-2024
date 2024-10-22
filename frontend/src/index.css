@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #121212;
-  color: #e0e0e0;
+  color: #ffffff;
   margin: 0;
   line-height: 1.6;
   overflow-x: hidden; /* Verhindert horizontales Scrollen */
@@ -80,7 +80,7 @@ label {
   font-weight: bold;
   margin-bottom: 10px;
   display: inline-block;
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 /* Stile für Eingabefelder */
