@@ -103,14 +103,14 @@ app.get('/check-user-pet', verifyToken, (req, res) => {
 
 //Haustier erstellen Endpoint
 app.post('/create-pet', verifyToken, (req, res) => {
-  const { petname, species, type, age, food }  = req.body;
+  const { petname, species, type }  = req.body;
 
   if(!petname || !species || !type || !age || !food){
     return res.status(400).json({ error: 'Bitte alle Felder ausfüllen'})
     }
 
-  const sqlpet = 'INSERT INTO pets (petname, species, type, age, food, user_id) VALUES (?, ?, ?, ?, ?, ?)';
-  db.run(sqlpet, [petname, species, type, age, food, req.user.id], (err) => {
+  const sqlpet = 'INSERT INTO pets (petname, species, type, age, food, user_id) VALUES (?, ?, ?, ?)';
+  db.run(sqlpet, [petname, species, type, req.user.id], (err) => {
     if (err) {
       return res.status(500).json({ error: 'Fehler beim Speichern des Haustiers!' });
     }
