@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-/*Dummy-Datenbank
-const registeredEmails = ['user@example.com'];*/
-
+const apiUrl = 'http://localhost:5000'
 
 function Register() {
 
@@ -42,7 +40,7 @@ function Register() {
 
 try {
 
-  const response = await fetch(`http://localhost:5000/register`, {
+  const response = await fetch(`${apiUrl}/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -68,12 +66,13 @@ if (response.ok) {
 }
 };
   return (
-    <div>
+    <div className="register-container">
     <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
     <form onSubmit={handleSubmit}>
 
     <label htmlFor="email">E-Mail-Adresse</label>
-
+    
+<div className="input-container">
       <input
         type="email"
         id="email"
@@ -118,7 +117,7 @@ if (response.ok) {
             required
 
           /><br/><br/>
-
+</div>
 
     {loading && (
       <div className="loader-container">
@@ -126,7 +125,7 @@ if (response.ok) {
           <div className="loader"></div></div> // Loader anzeigen, wenn loading true ist
         )}
     
-    <button type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword || !formData.username || loading}>
+    <button className="register-button "type="submit" disabled={!formData.email || !formData.password || !formData.confirmPassword || !formData.username || loading}>
      {loading ? 'Lade ...' : 'Registrierung'}</button>
 
     <p className={message.includes('erfolgreich') ? 'success' : 'error'}>{message}</p>

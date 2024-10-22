@@ -1,39 +1,106 @@
-// src/pages/MainPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PetImage from '../components/petImage';
-
 import AffectionMeter from '../components/affection';
 import RewardShop from '../components/rewards';
 import VirtualPet from '../components/petFeed';
 import { Link } from 'react-router-dom';
+import XPManager from '../components/XPManager';
 
 
-const MainPage = ({ petType, selectedColor, petName }) => {
+
+const MainPage = ({ petType, selectedColor, petName, user }) => {
+  const [hunger, setHunger] = useState(100);
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(0);
-  const [background, setBackground] = useState('#806054');
+  const [xp, setXp] = useState(0);  // XP-State für Level-Up
+  const [background, setBackground] = useState('#121212');
   const [isRewardShopOpen, setRewardShopOpen] = useState(false);
+  const [affection, setAffection] = useState(0);
+
+  const apiUrl = 'http://localhost:5000'
 
   const toggleRewardShop = () => {
     setRewardShopOpen(!isRewardShopOpen);
   };
 
+/*API_ENDPUNKT FETCH IST READY*/
+useEffect(() => {
+  const fetchData = async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch(`${apiUrl}/${user.id}`);
+        const data = await response.json();
+        if (response.ok) {
+          setHunger(data.hunger);
+          setAffection(data.affection);
+          setLevel(data.level);
+          setXp(data.xp)
+          setCoins(data.coins)
+          setBackground(data.background)
+        } else {
+          console.error('Fehler beim Abrufen der Daten:', response.status);
+        }
+      } catch (error) {
+        console.log('Fehler beim Abrufen der Daten:', error);
+      }
+    }
+  };
+  fetchData();
+}, [user]);
+
+useEffect(() => {
+  const saveData = async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch(`${apiUrl}/${user.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ hunger, affection, level }),
+        });
+
+        if (!response.ok) {
+          console.error('Fehler beim Speichern der Daten!');
+        }
+      } catch (error) {
+        console.log('Fehler beim Speichern:', error);
+      }
+    }
+  };
+  saveData();
+}, [hunger, affection, level, user, background, xp, coins]);
+
   return (
+    <div className="app">
+      <div className="level-status">
+        <p>XP: {xp}</p>
+        <p>Level: {level}</p>
+        <p>Coins: {coins}</p>
+      </div>
 
-    <div style={{ background: background, minHeight: '100vh', padding: '20px' }}>
+      <div className="hunger-container">
+        <VirtualPet hunger={hunger} setHunger={setHunger} level={level} setLevel={setLevel} />
+      </div>
+
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <PetImage petType={petType} selectedColor={selectedColor} petName={petName} />
+        <PetImage petType={petType} selectedColor={selectedColor} petName={petName} />
 
+        {/* XPManager-Component */}
+        <XPManager level={level} setLevel={setLevel} xp={xp} setXp={setXp} />
 
-        {/* Affection Meter */}
-        <AffectionMeter level={level} setLevel={setLevel} coins={coins} setCoins={setCoins} />
+        {/* AffectionMeter-Component */}
+        <AffectionMeter 
+          level={level} 
+          setCoins={setCoins} 
+          increaseXp={() => setXp(prevXp => prevXp + 10)} // XP-Erhöhung beim Klicken
+        />
 
-        {/* Button to open or close Reward Shop */}
-        <button onClick={toggleRewardShop} style={{ marginTop: '20px',marginBottom: '10px', padding: '10px 20px' }}>
+        <button onClick={toggleRewardShop} style={{ marginTop: '20px', marginBottom: '10px', padding: '10px 20px' }}>
           {isRewardShopOpen ? 'Close Shop' : 'Open Reward Shop'}
         </button>
 
-        {/* Reward Shop Modal */}
         {isRewardShopOpen && (
           <div className="modal">
             <div className="modal-content">
@@ -43,6 +110,9 @@ const MainPage = ({ petType, selectedColor, petName }) => {
         )}
       </div>
 
+      <div className="impressum">
+        <p><Link to="/impressum">Impressum</Link></p>
+      </div>
     </div>
   );
 };

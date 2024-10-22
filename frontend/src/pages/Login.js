@@ -125,6 +125,7 @@ function Login() {
       <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">E-Mail-Adresse</label>
+        <div className="input-container">
         <input
           type="email"
           value={email}
@@ -152,8 +153,8 @@ function Login() {
             <div className="loader"></div>
           </div>
         )}
-
-        <button type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
+</div>
+        <button className="login-button" type="submit" onClick={handleSubmitLogin} disabled={!email || !password || loading}>
           {loading ? 'Lade...' : 'Login'}
         </button>
 

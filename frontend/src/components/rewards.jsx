@@ -1,4 +1,3 @@
-// src/components/rewards.jsx
 import React, { useState } from 'react';
 import './rewards.css'; // Ensure you create a separate CSS file for styling
 

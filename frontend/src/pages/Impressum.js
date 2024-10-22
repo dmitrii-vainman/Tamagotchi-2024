@@ -5,8 +5,8 @@ import './Impressum.css'; // Import your CSS file
 function Impressum() {
     return (
         <div className="impressum-container">
-            <div className="impressum-frame">
-            <h1 className="logo" style={{ textAlign: 'center' }}>SnuggleBuddy</h1>
+            <div>
+            <h1 className="logo">SnuggleBuddy</h1>
                 <h2>Unser Impressum</h2>
                 <p>Dieses Projekt wird von uns als Gruppe im Rahmen einer Weiterbildung durchgeführt!</p>
                 <p><Link to="/login">Einloggen</Link></p>

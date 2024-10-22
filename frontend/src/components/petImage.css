@@ -1,6 +1,5 @@
-/* PetImage.css */
 .pet-image-container {
-    padding: 0 260px 5px 260px;
+    padding: 0 200px 20px 200px;
     width: 300px;
     border-radius: 10px; /* Optional rounded corners */
     display: flex;
@@ -10,7 +9,9 @@
   }
   
   .pet-image {
+    padding: 0 50px 10px 50px;
     width: auto;
+
     height: auto; /* Maintain aspect ratio */
   }
   
