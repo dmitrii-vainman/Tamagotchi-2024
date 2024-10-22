@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+/*Dummy-Datenbank
+const users = {
+  'user@example.com': { password: 'pass123', username: 'user' }
+};*/
+
+
 const apiUrl = 'http://localhost:5000'
 
 function Login() {
@@ -116,7 +122,7 @@ function Login() {
 }  
 
   return (
-    <div className="login-container">
+    <div className="form-container">
       <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">E-Mail-Adresse</label>
@@ -142,6 +148,7 @@ function Login() {
           required
         />
         <br /><br />
+        <Link to="/reset">Passwort vergessen?</Link><br />
 
         {loading && (
           <div className="loader-container">

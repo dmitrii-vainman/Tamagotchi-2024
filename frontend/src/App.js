@@ -6,6 +6,8 @@ import NotFound from './pages/notFound.js'; // Angenommene NotFound-Komponente
 import PetPage from './pages/PetPage.jsx'
 import MainPage from "./pages/MainPage.jsx"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RequestReset from './pages/requestPassword.js';
+import ResetPassword from './pages/resetPassword.js';
 
 
 
@@ -25,6 +27,8 @@ function App() {
           <Route path='/impressum' element={<Impressum />} />
           <Route path='/petpage' element={<PetPage />} />
           <Route path='/mainpage' element={<MainPage />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/reset' element={<RequestReset />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       </div>
