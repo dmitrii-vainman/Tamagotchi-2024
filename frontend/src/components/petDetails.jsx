@@ -3,8 +3,6 @@ import PetColorPicker from './petColor';
 import './petDetails.css';
 
 const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setPetName }) => { 
-  const [age, setAge] = useState('');
-  const [snack, setSnack] = useState('');
 
   const handlePetTypeChange = (e) => {
     const selectedType = e.target.value;
@@ -34,28 +32,6 @@ const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setP
           type="text"
           onChange={(e) => setPetName(e.target.value)}
           placeholder="Name: "
-        />
-      </div>
-
-      <div className="form-group">
-        <label>Alter:</label>
-        <input
-          maxLength="3"
-          type="number"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          placeholder="Alter: "
-        />
-      </div>
-
-      <div className="form-group">
-        <label>Lieblingsessen:</label>
-        <input
-          maxLength="20"
-          type="text"
-          value={snack}
-          onChange={(e) => setSnack(e.target.value)}
-          placeholder="Lieblingsessen: "
         />
       </div>
     </div>

@@ -1,20 +1,24 @@
 .pet-image-container {
-    padding: 0 200px 20px 200px;
-    width: 300px;
-    border-radius: 10px; /* Optional rounded corners */
+    width: 504px; /* Keep this width consistent with the form */
+    height: 400px; /* Adjust height to your preference */
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content */
-    justify-content: center; /* Center content */
-  }
-  
-  .pet-image {
-    padding: 0 50px 10px 50px;
-    width: auto;
+    flex-direction: column; /* Center content horizontally */
+    justify-content: center; /* Push the image towards the bottom */
+    padding: 10px; /* Padding for internal spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: adds some depth */
+}
 
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-  .petBuddy {
+/* Styling for the pet image itself */
+.pet-image {
+    max-width: 80%; /* Make the image smaller to fit well */
+    height: auto;
+    display: block; /* Make sure the image is block to center */
+}
+
+/* Styling for the pet name */
+.petBuddy {
     color: black;
-  }
+    text-align: center;
+    margin-bottom: 10px;
+}
