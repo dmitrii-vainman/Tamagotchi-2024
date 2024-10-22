@@ -5,7 +5,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
   const [playTime, setPlayTime] = useState(0);
   const [showMessage, setShowMessage] = useState(false); // Update initial state
 
-  useEffect(() => {
+  useEffect(() => {//Hungerwert
     const interval = setInterval(() => {
       setHunger(prevHunger => Math.max(prevHunger - 1, 0)); 
     }, 1000); 
@@ -13,7 +13,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
     return () => clearInterval(interval); 
   }, []);
 
-  useEffect(() => {
+  useEffect(() => {//Zeit-zähler
     const timeInterval = setInterval(() => {
       setPlayTime(prevTime => prevTime + 1);
     }, 1000);

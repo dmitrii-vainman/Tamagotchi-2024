@@ -11,7 +11,7 @@ import XPManager from '../components/XPManager';
 const MainPage = ({ petType, selectedColor, petName, user }) => {
   const [hunger, setHunger] = useState(100);
   const [level, setLevel] = useState(1);
-  const [coins, setCoins] = useState(1000);
+  const [coins, setCoins] = useState(1000);//1000 Coins zum Start
   const [xp, setXp] = useState(0);  // XP-State für Level-Up
   const [background, setBackground] = useState('/images/bg-1.png');
   const [isRewardShopOpen, setRewardShopOpen] = useState(false);
