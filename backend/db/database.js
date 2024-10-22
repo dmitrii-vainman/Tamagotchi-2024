@@ -14,7 +14,7 @@ const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`, (err) => {
             username TEXT UNIQUE,
             email TEXT UNIQUE,
             password TEXT,
-            coins TEXT DEFAULT 0, 
+            coins INTEGER DEFAULT 0, 
             reset_token TEXT,
             reset_token_expiry DATETIME
         )`,(err) => {
@@ -27,7 +27,7 @@ const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`, (err) => {
 
         db.run(`CREATE TABLE IF NOT EXISTS pets (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
+            user_id INTEGER UNIQUE,
             petname TEXT,
             species TEXT,
             type TEXT,
