@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+export const handleLogout = (history) => {
+  localStorage.removeItem('token'); // Token aus dem Local Storage entfernen
+  history.push('/login'); // Zur Login-Seite weiterleiten
+};
+
 const ProtectedComponent = () => {
   const [message, setMessage] = useState('');
   const history = useHistory();
