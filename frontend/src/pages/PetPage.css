@@ -1,104 +1,44 @@
-/* PetPage.css */
-.PetPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(60vh + 30px);
-  padding: 20px;
-  
-  /* Set the background image */
-
-  background-size: cover; /* Make sure the image covers the whole area */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-}
-
-
+/* Adjusted container layout for side-by-side structure */
 .pet-page-container {
   display: flex;
+  position: relative; /* Parent element is now relative */
   justify-content: space-between;
-  align-items: flex-start;
+  width: 90%;
   max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #a07a41;
+  margin: 90px auto;
+  padding: 30px;
+  background-color: #343232;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(112, 103, 103, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Darker outer frame */
-.outer-frame {
-  padding: 10px; /* Padding for the inner form section */
-  border-radius: 15px;
-  background-color: #9a7d74; /* Slightly darker frame */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
-}
-
+/* Form section styling */
 .pet-form-container {
-  width: 40%;
-  padding-right: 40px;
-  margin-right: auto;
-  border-radius: 10px;
-  background-color: #c7ab7a; /* Light background for the form section */
+  width: 35%; /* Take 45% of the width for the form */
+  background-color: #525151;
   padding: 20px;
-}
-
-/* Form Styling */
-.pet-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  font-weight: bold;
-  color: #3d3434;
-  margin-bottom: 5px;
-}
-
-input, select {
-  padding: 10px;
-  border: 1px solid #806054;
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: #c0b6a5;
-  width: 100%;
-}
-
-/* Lift the dropdown for pet type */
-select {
-  margin-top: -10px; /* Move it up slightly */
-}
-
-button {
-  margin-top: 20px;
-}
-
-.submitbuttonpet {
-  background-color: rgb(39, 32, 32); /* Use a hyphen for property names */
-  margin-top: 20px; /* Use a hyphen for property names */
-  padding: 10px 20px; 
-  color: white;
-  outline: 1px solid #efefef; /* White outline */
-  outline-offset: -3px;
-  text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000; 
-}
-
-
-
-
-/* Image Section */
-.pet-image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40%;
-}
-
-.pet-image-container img {
-  max-width: 100%;
   border-radius: 10px;
+  max-width: 350px;
+}
+
+/* Image section styling */
+.pet-image-container {
+  width: 45%; /* Take 45% of the width for the image */
+  max-width: 500px;
+  display: flex;
+  padding: 30px 0 0 0;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Button style consistent with MainPage */
+.submitbuttonpet {
+  background-color: rgb(39, 32, 32);
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: white;
+  outline: 1px solid #efefef;
+  outline-offset: -3px;
+  text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
 }
