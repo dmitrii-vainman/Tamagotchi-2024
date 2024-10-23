@@ -104,6 +104,8 @@ app.get('/check-user-pet', verifyToken, (req, res) => {
 app.post('/create-pet', verifyToken, (req, res) => {
   const { petname, species, type }  = req.body;
 
+  console.log(req.body);
+
   if(!petname || !species || !type ){
     return res.status(400).json({ error: 'Bitte alle Felder ausfüllen'})
     }
