@@ -11,14 +11,12 @@ import passwordResetRouter from './passwort_reset.js';
 dotenv.config();  // .env-Datei laden
 
 const jwtSecret = process.env.JWT_SECRET
-
-
 const app = express();
 const port = 5000;
 
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL,
   methods: ['GET', 'POST'], 
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -121,28 +119,32 @@ app.post('/create-pet', verifyToken, (req, res) => {
 
 // Haustier füttern
 app.post('/feed-pet', verifyToken, (req, res) => {
+  const { hunger  } = req.body;
   const sqlFeed = `
       UPDATE pets 
-      SET hunger = hunger + 20 
+      SET hunger = ?
       WHERE user_id = ?`;
 
-  // Hunger erhöhen
-  db.run(sqlFeed, [req.user.id], (err) => {
+  db.run(sqlFeed, [hunger, req.user.id], (err) => {
       if (err) {
           return res.status(500).json({ error: 'Fehler beim Füttern des Haustiers!' });
       }
 
-      // Coins erhöhen
+    // Coins nur erhöhen, wenn das Haustier gefüttert wird und Hunger 100 erreicht
+    if (hunger >= 100) {
       const sqlCoins = `
-          UPDATE users 
-          SET coins = coins + 10 
-          WHERE id = ?`;
+        UPDATE users 
+        SET coins = coins + 10 
+        WHERE id = ?`;
       db.run(sqlCoins, [req.user.id], (err) => {
-          if (err) {
-              return res.status(500).json({ error: 'Fehler beim Aktualisieren der Coins!' });
-          }
-          res.status(200).json({ message: 'Haustier gefüttert und Coins hinzugefügt!' });
+        if (err) {
+          return res.status(500).json({ error: 'Fehler beim Aktualisieren der Coins!' });
+        }
+        res.status(200).json({ message: 'Haustier gefüttert und Coins hinzugefügt!' });
       });
+    } else {
+      res.status(200).json({ message: 'Hungerwert erfolgreich synchronisiert!' });
+    }
   });
 });
 
@@ -150,12 +152,31 @@ app.post('/feed-pet', verifyToken, (req, res) => {
 app.get('/my-pet', verifyToken, (req, res) => {
   const sql = 'SELECT * FROM pets WHERE user_id = ?';
   db.get(sql, [req.user.id], (err, pet) => {
-      if (err || !pet) {
-          return res.status(404).json({ error: 'Haustier nicht gefunden' });
+    if (err || !pet) {
+      return res.status(404).json({ error: 'Haustier nicht gefunden' });
+    }
+
+    // Berechne die Zeitdifferenz in Minuten
+    const lastFedTime = new Date(pet.lastFed);
+    const currentTime = new Date();
+    const diffInMinutes = Math.floor((currentTime - lastFedTime) / (1000 * 60));
+
+    // Berechne neuen Hunger basierend auf der Zeitdifferenz
+    const newHunger = Math.max(pet.hunger - diffInMinutes, 0);
+
+    // Aktualisiere den Hunger in der Datenbank
+    const updateSql = 'UPDATE pets SET hunger = ?, lastFed = ? WHERE user_id = ?';
+    db.run(updateSql, [newHunger, currentTime, req.user.id], (err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Fehler beim Aktualisieren des Haustiers' });
       }
-      res.status(200).json(pet);
+
+      // Gib das Haustier zurück mit dem aktualisierten Hunger
+      res.status(200).json({ ...pet, hunger: newHunger });
+    });
   });
 });
+
 
 
 // Geschützter Endpunkt
