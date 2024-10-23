@@ -25,7 +25,7 @@ function PetPage() {
   };
 
   return (
-    <div className="pet-page-container" style={{ display: 'flex', alignItems: 'flex-start' }}>
+    <div className="pet-page-container">
       {/* Form Section */}
       <div className="pet-form-container">
         <PetForm
@@ -41,8 +41,10 @@ function PetPage() {
       </div>
 
       {/* Image Section */}
-      <div className="pet-image-section" style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-        <PetImage petName={petName} petType={petType} selectedColor={selectedColor} />
+      <div className="pet-image-container">
+      <PetImage petType={petType} selectedColor={selectedColor} petName={petName} pageType="petPage" />
+
+
       </div>
     </div>
   );

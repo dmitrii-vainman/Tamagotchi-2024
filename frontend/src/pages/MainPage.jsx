@@ -85,8 +85,9 @@ useEffect(() => {
       </div>
   
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <PetImage petType={petType} selectedColor={selectedColor} petName={petName} />
-  
+      <PetImage petType={petType} selectedColor={selectedColor} petName={petName} pageType="mainPage" />
+
+
         {/* XPManager-Component */}
         <XPManager level={level} setLevel={setLevel} xp={xp} setXp={setXp} />
   

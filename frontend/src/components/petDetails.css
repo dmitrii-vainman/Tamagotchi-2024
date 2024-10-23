@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-start; /* Align form and image to the top */
-  width: 100%;
+  width: 90%;
   max-width: 900px; /* Adjust container width */
+  min-width: 700px;
   margin: 0 auto; /* Center the entire form and image container */
   padding: 50px;
   background-color: #bd9858; /* White background for the whole section */
@@ -14,6 +15,7 @@
 .pet-form-container {
   width: 50%; /* Form takes 50% of the width */
   padding-right: 20px; /* Space between form and image */
+  min-width: 300px;
 }
 
 h2 {
@@ -26,6 +28,8 @@ h2 {
 .pet-form {
   display: flex;
   flex-direction: column;
+  max-width: 300px;
+  
 }
 
 .form-group {
@@ -43,7 +47,7 @@ h2 {
 
 label {
   font-weight: bold;
-  color: #5b4b4b;
+  color: #decdcd;
   margin-bottom: 5px;
 }
 
