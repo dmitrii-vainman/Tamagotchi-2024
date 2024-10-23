@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './petFeed.css'
 
-const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
+const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   const [playTime, setPlayTime] = useState(0);
   const [showMessage, setShowMessage] = useState(false); // Update initial state
 
@@ -39,6 +39,33 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel }) => {
       return () => clearTimeout(messageTimeout);
     }
   }, [level]);
+
+  // Synchronisiere den Hungerwert in bestimmten Abständen mit dem Backend
+  useEffect(() => {
+    const syncHunger = setInterval(() => {
+      fetch('http://localhost:5000/feed-pet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
+        body: JSON.stringify({ hunger }) 
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error('Fehler beim Synchronisieren des Hungerwerts:', data.error);
+          } else {
+            console.log('Hungerwert erfolgreich synchronisiert');
+          }
+        })
+        .catch(error => {
+          console.error('Fehler beim Abrufen der Daten:', error);
+        });
+    }, 60000); 
+
+    return () => clearInterval(syncHunger);
+  },  [hunger, token]);
 
   const food1 = () => {
     setHunger(prevHunger => Math.min(prevHunger + 5, 100)); 

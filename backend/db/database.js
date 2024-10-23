@@ -27,12 +27,13 @@ const db = new sqlite3.Database(`./${process.env.DB_NAME}.db`, (err) => {
 
         db.run(`CREATE TABLE IF NOT EXISTS pets (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER UNIQUE,
+            user_id INTEGER,
             petname TEXT,
             species TEXT,
             type TEXT,
             hunger INTEGER DEFAULT 100,
             level INTEGER DEFAULT 0,
+            lastFed  DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id)
         )`, (err) => {
             if (err) {
