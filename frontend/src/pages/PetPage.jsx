@@ -10,13 +10,42 @@ function PetPage() {
   const [petName, setPetName] = useState('');
   const navigate = useNavigate();
   
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!petName || !petType || !selectedColor) {
+      setError("Bitte alle Felder ausfüllen");
+      return;
+    }
+
     const confirmation = window.confirm("Sind Sie sicher, dass Sie die Daten speichern möchten?");
-    if (confirmation) {
-      navigate('/MainPage');
-      // Add any logic for saving data (SQLite or backend)
-    } else {
+    if (!confirmation) {
       console.log('Speichern abgebrochen');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/create-pet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          petname: petName,
+          species: selectedColor,
+          type: petType
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        navigate("/MainPage");
+      } else {
+        setError(data.error || 'Fehler beim Speichern des Haustiers');
+      }
+    } catch (err) {
+      setError('Verbindungsfehler zum Server');
+      console.error('Error:', err);
     }
   };
 
