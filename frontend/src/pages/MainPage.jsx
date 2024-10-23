@@ -13,7 +13,7 @@ const MainPage = ({ petType, selectedColor, petName, user }) => {
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(1000);
   const [xp, setXp] = useState(0);  // XP-State für Level-Up
-  const [background, setBackground] = useState('/images/default-bg.png');
+  const [background, setBackground] = useState('/images/bg-1.png');
   const [isRewardShopOpen, setRewardShopOpen] = useState(false);
   const [affection, setAffection] = useState(0);
 
@@ -92,6 +92,8 @@ useEffect(() => {
   
         {/* AffectionMeter-Component */}
         <AffectionMeter 
+          affection={affection} 
+          setAffection={setAffection} 
           level={level} 
           setCoins={setCoins} 
           increaseXp={() => setXp(prevXp => prevXp + 10)} // XP-Erhöhung beim Klicken
@@ -111,7 +113,7 @@ useEffect(() => {
       </div>
   
       <div className="impressum">
-        <p><Link to="/impressum">Impressum</Link></p>
+        <p style={{ textShadow: "1px 1px 2px black" }}><Link to="/impressum">Impressum</Link></p>
       </div>
     </div>
   );

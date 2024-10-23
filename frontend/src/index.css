@@ -1,7 +1,7 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Chiller', cursive, Arial, sans-serif;
   background-color: #121212;
-  color: #e0e0e0;
+  color: #ffffff;
   margin: 0;
   line-height: 1.6;
   overflow-x: hidden; /* Verhindert horizontales Scrollen */
@@ -12,20 +12,8 @@ body {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
-.login-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%; 
-}
-
 /* Container Register Componente */
-.register-container {
+.form-container {
   max-width: 1000px;
   margin: 0 auto; /* Horizontale Zentrierung */
   padding: 20px;
@@ -35,8 +23,6 @@ body {
   align-items: center; /* Horizontal zentrieren */
   height: 100vh; /* Vollständige Höhe des Viewports für Zentrierung */
 }
-
-
 .app {
   display: flex;
   flex-direction: column;
@@ -80,7 +66,7 @@ label {
   font-weight: bold;
   margin-bottom: 10px;
   display: inline-block;
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 /* Stile für Eingabefelder */
@@ -90,7 +76,8 @@ input[type="password"] {
   background-color: #333333;
   color: #e0e0e0;
   border: 1px solid #444444;
-  width: 95%;
+  max-width: 370px; 
+  width: 100%;
   padding: 10px;
   margin: center;
   border-radius: 4px;

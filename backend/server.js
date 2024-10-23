@@ -52,7 +52,7 @@ app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 10);
 
-  const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+  const sql = 'INSERT INTO users (username, email, password, coins) VALUES (?, ?, ?, 0)';
   db.run(sql, [username, email, hashedPassword], (err) => {
     if (err) {
       return res.status(400).json({ error: 'Benutzername oder E-Mail bereits vergeben' });
@@ -82,6 +82,7 @@ app.post('/login', async (req, res) => {
         id: user.id,
         username: user.username,
         email: user.email,
+        coins: user.coins,
       }
     });
   });
@@ -105,16 +106,54 @@ app.get('/check-user-pet', verifyToken, (req, res) => {
 app.post('/create-pet', verifyToken, (req, res) => {
   const { petname, species, type }  = req.body;
 
-  if(!petname || !species || !type || !age || !food){
+  if(!petname || !species || !type ){
     return res.status(400).json({ error: 'Bitte alle Felder ausfüllen'})
     }
 
-  const sqlpet = 'INSERT INTO pets (petname, species, type, age, food, user_id) VALUES (?, ?, ?, ?)';
+  const sqlpet = 'INSERT INTO pets (petname, species, type, user_id) VALUES (?, ?, ?, ?)';
   db.run(sqlpet, [petname, species, type, req.user.id], (err) => {
     if (err) {
       return res.status(500).json({ error: 'Fehler beim Speichern des Haustiers!' });
     }
     res.status(202).json({ message: 'Haustier erfolgreich gespeichert!' });
+  });
+});
+
+// Haustier füttern
+app.post('/feed-pet', verifyToken, (req, res) => {
+  const sqlFeed = `
+      UPDATE pets 
+      SET hunger = hunger + 20 
+      WHERE user_id = ?`;
+
+  // Hunger erhöhen
+  db.run(sqlFeed, [req.user.id], (err) => {
+      if (err) {
+          return res.status(500).json({ error: 'Fehler beim Füttern des Haustiers!' });
+      }
+
+      // Coins erhöhen
+      const sqlCoins = `
+          UPDATE users 
+          SET coins = coins + 10 
+          WHERE id = ?`;
+      db.run(sqlCoins, [req.user.id], (err) => {
+          if (err) {
+              return res.status(500).json({ error: 'Fehler beim Aktualisieren der Coins!' });
+          }
+          res.status(200).json({ message: 'Haustier gefüttert und Coins hinzugefügt!' });
+      });
+  });
+});
+
+// Geschützter Endpunkt für Haustierdaten
+app.get('/my-pet', verifyToken, (req, res) => {
+  const sql = 'SELECT * FROM pets WHERE user_id = ?';
+  db.get(sql, [req.user.id], (err, pet) => {
+      if (err || !pet) {
+          return res.status(404).json({ error: 'Haustier nicht gefunden' });
+      }
+      res.status(200).json(pet);
   });
 });
 

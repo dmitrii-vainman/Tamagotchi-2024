@@ -66,7 +66,7 @@ if (response.ok) {
 }
 };
   return (
-    <div className="register-container">
+    <div className="form-container">
     <h1 className="logo">SnuggleBuddy</h1>{/*Logo*/}
     <form onSubmit={handleSubmit}>
 

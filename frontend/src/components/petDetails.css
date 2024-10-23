@@ -54,7 +54,7 @@ input, select {
   border-radius: 5px;
   font-size: 14px;
   background-color: #867456;
-  max-width: 300px; /* Set a maximum width for input fields */
+  max-width: 300px; /* Set a maximum width for input fields*/
   width: 100%; /* Make input fields full width relative to max-width */
   margin-top: 5px; /* Add a bit of space above the input */
 }
