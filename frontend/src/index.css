@@ -3,7 +3,7 @@ body {
   background-color: #121212;
   color: #ffffff;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden; /* Verhindert horizontales Scrollen */
   box-sizing: border-box; /* Inkludiere Padding und Border in der Breite */
 }

@@ -1,14 +1,9 @@
 .pet-image-container {
-    width: 504px; /* Keep this width consistent with the form */
-    height: 400px; /* Adjust height to your preference */
-    min-width: 300px;
+    min-width: 320px;
     border-radius: 10px;
-    display: flex;
     flex-direction: column; /* Center content horizontally */
-    justify-content: center; /* Push the image towards the bottom */
     background-position: center;
-    width: 504px;
-    height: 430px;
+    height: 410px;
     position: relative;
     
 
