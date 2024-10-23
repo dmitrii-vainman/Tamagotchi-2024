@@ -37,7 +37,7 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
   };
 
   // Select the correct image based on pet type, color, and page
-  const petImageSrc = images[petType]?.[pageType]?.[selectedColor] || '/images/2.png'; // Fallback to default
+  const petImageSrc = images[petType]?.[pageType]?.[selectedColor] || '/images/dog.png'; // Fallback to default
 
   return (
     <div 
@@ -55,12 +55,11 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
         src={petImageSrc} 
         alt={petType} 
         className="pet-image" 
-        style={{
+        style={pageType === 'mainPage' ? {
           position: 'absolute', 
           bottom: '10px', 
           maxWidth: '50%', 
-          height: 'auto',
-        }} 
+        } : {}} 
       />
     </div>
   );
