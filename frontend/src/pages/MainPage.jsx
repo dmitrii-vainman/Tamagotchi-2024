@@ -4,7 +4,6 @@ import AffectionMeter from '../components/affection';
 import RewardShop from '../components/rewards';
 import VirtualPet from '../components/petFeed';
 import { Link, useHistory } from 'react-router-dom'
-import { Link } from 'react-router-dom';
 import XPManager from '../components/XPManager';
 import { handleLogout } from '../components/ProtectedComponent';
 
