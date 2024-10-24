@@ -27,13 +27,10 @@ Installation
   cd dein-repo
   Installiere die Abhängigkeiten:
 
-- Code kopieren
-  npm install
-  Starte die Anwendung:
 
 - Code kopieren
-  npm run dev
-
+  im /backend -> node server.js
+  im /frontend -> npm start
 
 Nutzung
 Öffne die Anwendung in deinem Webbrowser.
