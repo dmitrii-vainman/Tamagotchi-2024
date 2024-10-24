@@ -54,9 +54,9 @@ function PetPage() {
   };
 
   return (
-    <div className="pet-page-container">
+    <div className="pet-page-container" >
       {/* Form Section */}
-      <div className="pet-form-container">
+      <div className="pet-form-container" >
         <PetForm
           updatePetType={updatePetType}
           petType={petType}
