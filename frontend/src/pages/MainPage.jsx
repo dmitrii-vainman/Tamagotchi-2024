@@ -4,8 +4,8 @@ import AffectionMeter from '../components/affection';
 import RewardShop from '../components/rewards';
 import VirtualPet from '../components/petFeed';
 import { Link, useNavigate } from 'react-router-dom';
-import XPManager from '../components/XPManager';
-
+import XPManager from '../components/XPManager';           
+import { handleLogout } from '../components/ProtectedComponent';
 
 
 const MainPage = ({ petType, selectedColor, petName, user }) => {
