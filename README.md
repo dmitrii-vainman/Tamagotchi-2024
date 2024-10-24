@@ -20,10 +20,9 @@ Installation
 
 - git clone https://github.com/dein-benutzername/dein-repo.git
   Navigiere in das Projektverzeichnis:
-
-
- - cd dein-repo
-  Installiere die Abhängigkeiten:
+  cd dein-repo
+   
+ - Installiere die Abhängigkeiten:
 
 
 - Code kopieren
