@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const handleLogout = (navigate) => { 
   localStorage.removeItem('token'); // Token aus dem Local Storage entfernen
-  navigate('../pages/login'); // Zur Login-Seite weiterleiten
+  navigate('/login'); // Zur Login-Seite weiterleiten
 };
 
 const ProtectedComponent = () => {
