@@ -43,29 +43,36 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   // Synchronisiere den Hungerwert in bestimmten Abständen mit dem Backend
   useEffect(() => {
     const syncHunger = setInterval(() => {
-      fetch('http://localhost:5000/feed-pet', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-        },
-        body: JSON.stringify({ hunger }) 
-      })
-        .then(response => response.json())
+        fetch('http://localhost:5000/feed-pet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify({ hunger }) 
+        })
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 401) { 
+                    console.error('Token ungültig oder abgelaufen, versuche es zu erneuern');
+                }
+                return response.json().then(data => {
+                    throw new Error(data.error || 'Fehler beim Synchronisieren des Hungerwerts');
+                });
+            }
+            return response.json();
+        })
         .then(data => {
-          if (data.error) {
-            console.error('Fehler beim Synchronisieren des Hungerwerts:', data.error);
-          } else {
             console.log('Hungerwert erfolgreich synchronisiert');
-          }
         })
         .catch(error => {
-          console.error('Fehler beim Abrufen der Daten:', error);
+            console.error('Fehler beim Abrufen der Daten:', error);
         });
     }, 60000); 
 
     return () => clearInterval(syncHunger);
-  },  [hunger, token]);
+}, [hunger, token]); 
+
 
   const food1 = () => {
     setHunger(prevHunger => Math.min(prevHunger + 5, 100)); 
