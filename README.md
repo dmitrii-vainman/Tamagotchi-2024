@@ -17,23 +17,17 @@ Datenbank: SQLite
 Installation
 
 - Klone das Repository:
-
-- Code kopieren
   git clone https://github.com/dein-benutzername/dein-repo.git
-  Navigiere in das Projektverzeichnis:
-
-
-- Code kopieren
+  
+ - Navigiere in das Projektverzeichnis:
   cd dein-repo
-  Installiere die Abhängigkeiten:
-
-- Code kopieren
+   
+ - Installiere die Abhängigkeiten:
   npm install
-  Starte die Anwendung:
 
 - Code kopieren
-  npm run dev
-
+  im /backend -> node server.js
+  im /frontend -> npm start
 
 Nutzung
 Öffne die Anwendung in deinem Webbrowser.

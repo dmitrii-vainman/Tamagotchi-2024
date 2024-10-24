@@ -4,10 +4,11 @@
   position: relative; /* Parent element is now relative */
   justify-content: space-between;
   width: 90%;
-  max-width: 900px;
+  max-width: 800px;
+  min-width: 800px;
   margin: 90px auto;
   padding: 30px;
-  background-color: #343232;
+  background-color: #deae77;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -15,7 +16,7 @@
 /* Form section styling */
 .pet-form-container {
   width: 35%; /* Take 45% of the width for the form */
-  background-color: #525151;
+  background-color: #454343;
   padding: 20px;
   border-radius: 10px;
   max-width: 350px;
