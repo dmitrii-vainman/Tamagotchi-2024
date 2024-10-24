@@ -3,7 +3,7 @@ import PetImage from '../components/petImage';
 import AffectionMeter from '../components/affection';
 import RewardShop from '../components/rewards';
 import VirtualPet from '../components/petFeed';
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import XPManager from '../components/XPManager';
 import { handleLogout } from '../components/ProtectedComponent';
 
@@ -18,7 +18,7 @@ const MainPage = ({ petType, selectedColor, petName, user }) => {
   const [isRewardShopOpen, setRewardShopOpen] = useState(false);
   const [affection, setAffection] = useState(0);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const apiUrl = 'http://localhost:5000'
 
   const toggleRewardShop = () => {
@@ -83,7 +83,7 @@ useEffect(() => {
 
         {/* NEU: Logout-Button mit Aufruf der handleLogout Funktion */}
         <button 
-          onClick={() => handleLogout(history)}  // NEU: Logout-Logik, history wird übergeben
+          onClick={() => handleLogout(navigate)}  // NEU: Logout-Logik, history wird übergeben
           style={{ marginLeft: '20px', padding: '5px 10px' }}
         >
           Logout
