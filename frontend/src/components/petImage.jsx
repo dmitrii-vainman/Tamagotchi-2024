@@ -50,7 +50,7 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
         position: 'relative',
       } : {}}
     >
-      <h2 className='petBuddy'></h2>
+      <h2 className='petBuddy'>{petName}</h2>
       <img 
         src={petImageSrc} 
         alt={petType} 

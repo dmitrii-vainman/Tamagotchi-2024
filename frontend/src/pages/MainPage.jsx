@@ -123,7 +123,7 @@ useEffect(() => {
       </div>
   
       <div className="impressum">
-        <p style={{ textShadow: "1px 1px 2px black" }}><Link to="/impressum">Impressum</Link></p>
+        <p style={{ textShadow: "1px 1px 2px black" }}><Link to="/impressum">Impressum für  {petName} </Link></p>
       </div>
     </div>
   );
