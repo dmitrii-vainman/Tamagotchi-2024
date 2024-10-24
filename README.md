@@ -18,13 +18,11 @@ Installation
 
 - Klone das Repository:
 
-- Code kopieren
-  git clone https://github.com/dein-benutzername/dein-repo.git
+- git clone https://github.com/dein-benutzername/dein-repo.git
   Navigiere in das Projektverzeichnis:
 
 
-- Code kopieren
-  cd dein-repo
+ - cd dein-repo
   Installiere die Abhängigkeiten:
 
 
