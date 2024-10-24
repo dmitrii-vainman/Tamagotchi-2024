@@ -20,6 +20,6 @@
 /* Styling for the pet name */
 .petBuddy {
     color: black;
-    text-align: center;
+    text-align: match-parent;
     margin-bottom: 10px;
 }
