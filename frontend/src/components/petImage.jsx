@@ -40,6 +40,9 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
   const petImageSrc = images[petType]?.[pageType]?.[selectedColor] || '/images/dog.png'; // Fallback to default
 
   return (
+    <div>
+     <h2 className='petBuddy'>{petName}</h2>
+    
     <div 
       className={`pet-image-container ${pageType}-page`} 
       style={pageType === 'mainPage' ? {
@@ -50,7 +53,7 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
         position: 'relative',
       } : {}}
     >
-      <h2 className='petBuddy'>{petName}</h2>
+
       <img 
         src={petImageSrc} 
         alt={petType} 
@@ -61,6 +64,7 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
           maxWidth: '50%', 
         } : {}} 
       />
+    </div>
     </div>
   );
 };

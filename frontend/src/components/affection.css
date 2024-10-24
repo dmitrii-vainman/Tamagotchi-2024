@@ -9,3 +9,8 @@
     padding: 10px; /* Padding for internal spacing */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 2); /* Optional: adds some depth */
 }
+
+.h2-af {
+    margin-bottom: 20px;
+    color: #e0e0e0; /* Light text for headers */
+}
