@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
-export const handleLogout = (history) => {
+export const handleLogout = (navigate) => { 
   localStorage.removeItem('token'); // Token aus dem Local Storage entfernen
-  history.push('/login'); // Zur Login-Seite weiterleiten
+  navigate('../pages/login'); // Zur Login-Seite weiterleiten
 };
 
 const ProtectedComponent = () => {
   const [message, setMessage] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate(); // useNavigate anstelle von useHistory
 
   useEffect(() => {
     const fetchProtectedData = async () => {
@@ -35,9 +35,9 @@ const ProtectedComponent = () => {
     fetchProtectedData();
   }, []);
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => { // Funktion umbenennen, um Namenskonflikte zu vermeiden
     localStorage.removeItem('token'); // Token aus dem Local Storage entfernen
-    history.push('/login'); // Zur Login-Seite weiterleiten
+    navigate('/login'); // Zur Login-Seite weiterleiten
   };
 
   // Inline-Stile
@@ -67,7 +67,7 @@ const ProtectedComponent = () => {
   return (
     <div>
       {message}
-      <button onClick={handleLogout}>Logout</button> {/* Logout-Button */}
+      <button onClick={handleLogoutClick}>Logout</button> {/* Logout-Button */}
     </div>
   );
 };
