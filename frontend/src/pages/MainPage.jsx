@@ -50,6 +50,31 @@ useEffect(() => {
 }, [user]);
 
 useEffect(() => {
+  const fetchPetData = async () => {
+    const token = localStorage.getItem('token'); // Holen des Tokens aus dem lokalen Speicher
+    const response = await fetch(`${apiUrl}/my-pet`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (!response.ok) {
+      console.error('Fehler beim Abrufen der Haustierdaten');
+      return;
+    }
+    const petData = await response.json();
+    // Setze den Zustand mit den Haustierdaten
+    setHunger(petData.hunger);
+    setAffection(petData.affection);
+    setLevel(petData.level);
+    setXp(petData.xp);
+    setCoins(petData.coins);
+    setBackground(petData.background); // Falls du das Background in den Haustierdaten hast
+  };
+
+  fetchPetData();
+}, [user]);
+
+useEffect(() => {
   const saveData = async () => {
     if (user && user.id) {
       try {

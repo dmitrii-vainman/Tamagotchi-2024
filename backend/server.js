@@ -28,13 +28,19 @@ app.use(express.json());
 
 // Middleware zur Token-Verifizierung
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
+  const authHeader = req.headers['authorization']; 
+
+  if (!authHeader) {
+    return res.status(403).json({ error: 'Kein Token vorhanden' });
+  }
+
+  const token = authHeader.split(' ')[1]; 
 
   if (!token) {
     return res.status(403).json({ error: 'Kein Token vorhanden' });
   }
 
-  jwt.verify(token.split(' ')[1], process.env.JWT_SECRET, (err, user) => {  // Geheimschlüssel aus Umgebungsvariable
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {  
     if (err) {
       console.log('Fehlgeschlagen:', err);
       return res.status(403).json({ error: 'Token ungültig oder abgelaufen' });
@@ -71,20 +77,31 @@ app.post('/login', async (req, res) => {
     if (!validPassword) {
       return res.status(401).json({ error: 'Ungültiges Passwort' });
     }
-      // JWT erzeugen
-    const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return res.status(200).json({
-      message: 'Login erfolgreich!',
-      token,
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        coins: user.coins,
+
+    // Haustierdaten abrufen
+    const petSql = 'SELECT * FROM pets WHERE user_id = ?';
+    db.get(petSql, [user.id], (err, pet) => {
+      if (err) {
+        return res.status(500).json({ error: 'Fehler beim Abrufen der Haustierdaten' });
       }
+
+      // JWT erzeugen
+      const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      return res.status(200).json({
+        message: 'Login erfolgreich!',
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          coins: user.coins,
+        },
+        pet // Haustierdaten hinzufügen
+      });
     });
   });
 });
+
 
 //Haustier-Abfrage
 app.get('/check-user-pet', verifyToken, (req, res) => {
@@ -95,7 +112,7 @@ app.get('/check-user-pet', verifyToken, (req, res) => {
       return res.status(500).json({ error: 'Fehler beim Abrufen der Haustiere' });
    }
    return res.status(200).json({
-    hesPet: pets.length > 0
+    hasPet: pets.length > 0
    });
 });
 });
@@ -104,11 +121,18 @@ app.get('/check-user-pet', verifyToken, (req, res) => {
 app.post('/create-pet', verifyToken, (req, res) => {
   const { petname, species, type }  = req.body;
 
-  console.log(req.body);
-
   if(!petname || !species || !type ){
     return res.status(400).json({ error: 'Bitte alle Felder ausfüllen'})
     }
+
+  const checkPetSql = 'SELECT * FROM pets WHERE user_id = ?';
+  db.get(checkPetSql, [req.user.id], (err, pet) => {
+      if (err) {
+        return res.status(500).json({ error: 'Fehler beim Überprüfen des Haustiers!' });
+      }
+      if (pet) {
+        return res.status(400).json({ error: 'Ein Haustier existiert bereits!' });
+      }
 
   const sqlpet = 'INSERT INTO pets (petname, species, type, user_id) VALUES (?, ?, ?, ?)';
   db.run(sqlpet, [petname, species, type, req.user.id], (err) => {
@@ -117,6 +141,7 @@ app.post('/create-pet', verifyToken, (req, res) => {
     }
     res.status(202).json({ message: 'Haustier erfolgreich gespeichert!' });
   });
+});
 });
 
 // Haustier füttern
@@ -197,5 +222,6 @@ if (process.env.NODE_ENV !== 'test') {
     console.log(`Server läuft auf Port ${port}`);
   });
 }
+
 
 export default app;
