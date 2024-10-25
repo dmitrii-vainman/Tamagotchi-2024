@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './affection.css'
 
-const AffectionMeter = ({ level, setCoins, increaseXp, affection, setAffection }) => {
+const AffectionMeter = ({ petName, level, setCoins, increaseXp, affection, setAffection }) => {
  
 
   const increaseAffection = () => {
@@ -16,7 +16,7 @@ const AffectionMeter = ({ level, setCoins, increaseXp, affection, setAffection }
 
   return (
     <div className="affection-container">
-      <h2 className='h2-af' style={{ textShadow: "1px 1px 2px black" }}>Gebe deinem Tier Zuneigung</h2>
+      <h2 className='h2-af' style={{ textShadow: "1px 1px 2px black" }}>Gebe {petName} Zuneigung</h2>
       {/* Affection Bar */}
       <div style={{ marginTop: '20px', width: '300px', backgroundColor: '#ddd', height: '20px', borderRadius: '10px' }}>
         <div

@@ -1,7 +1,6 @@
 body {
   font-family: Arial, sans-serif;
   background-image: url('/public/images/bg-6.jpeg');
- 
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   color: #ffffff;
@@ -33,7 +32,7 @@ body {
   align-items: center; /* Horizontal zentrieren */
   min-height: 100vh; /* 100% der Höhe */
   padding: 2rem;
-  background-color: #121212;
+
   width: 100%;
   position: relative; /* Absolute Positionierung */
 }
@@ -151,6 +150,8 @@ p {
   margin-top: 15px;
   text-align: center;
   color: #e0e0e0;
+  text-shadow: #1f1f1f;
+  
 }
 
 a {
@@ -289,14 +290,19 @@ h2 {
   top: 10px;
   left: 20px; /* Verschieben nach links */
   font-size: 18px;
+  min-width: 15%;
+  max-width: 25%;
   background-color: transparent;
-  color: #a0430e;
+  border-radius: 10px;
   display: block;
-  margin-bottom: 10px;
+  margin: 10px;
+  background-color: #aaaaaaab;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);  
 }
 
 .affection-container {
   position: absolute;
+  height: 100px;
   bottom: 20px; /* Positionierung nach unten */
   right: 20px;  /* Positionierung nach rechts */
   display: flex;

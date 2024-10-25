@@ -45,11 +45,18 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
 
   return (
     <div>
-      <h2 className='petBuddy'>{petName}</h2>
+      <h2 className='petBuddy'></h2>
     
       <div 
         className={`pet-image-container`} 
-        style={{
+        style={ pageType == 'petPage' ? {
+          backgroundColor: 'rgba(38, 38, 38, 0.5)', // Grey with 50% opacity for MainPage
+          backgroundPosition: 'center',
+          width: '504px',
+          height: '400px',
+          maxWidth: '300px',
+          position: 'relative',
+        }: {
           backgroundColor: 'rgba(38, 38, 38, 0.5)', // Grey with 50% opacity for MainPage
           backgroundPosition: 'center',
           width: '504px',
