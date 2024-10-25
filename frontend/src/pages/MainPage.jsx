@@ -122,15 +122,16 @@ const MainPage = ({ user }) => {
 
   return (
     <div className="app" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh' }}>
-      <div className="level-status">
+      <div className="level-status" stlye={{}}>
         <p>XP: {xp}</p>
         <p>Level: {level}</p>
         <p>Coins: {coins}</p>
 
+
         {/* Logout Button */}
         <button 
           onClick={() => handleLogout(navigate)}  // Call handleLogout with navigate
-          style={{ marginLeft: '20px', padding: '5px 10px' }}
+          style={{ margin: '10px 10px', padding: '5px 10px' }}
         >
           Logout
         </button>
@@ -149,6 +150,7 @@ const MainPage = ({ user }) => {
 
         {/* Affection Meter Component */}
         <AffectionMeter 
+          petName={petName}
           affection={affection} 
           setAffection={setAffection} 
           level={level} 

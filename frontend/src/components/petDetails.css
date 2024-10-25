@@ -29,6 +29,7 @@
 
 .form-select {
   margin-bottom: 10px;
+  background-color: rgba(240, 248, 255, 0.272);
   margin-top: 10px;
   display: flex; /* Added to allow better alignment of label and input */
   flex-direction: column; /* Keep label above input */

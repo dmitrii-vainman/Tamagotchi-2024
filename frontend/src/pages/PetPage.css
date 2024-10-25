@@ -8,7 +8,7 @@
   min-width: 800px;
   margin: 90px auto;
   padding: 30px;
-  background-color: #deae77;
+  background-color: rgba(50, 50, 50, 0.3);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -16,7 +16,7 @@
 /* Form section styling */
 .pet-form-container {
   width: 35%; /* Take 45% of the width for the form */
-  background-color: #454343;
+  background-color: rgba(44, 44, 42, 0.438);;
   padding: 20px;
   border-radius: 10px;
   max-width: 350px;
@@ -24,8 +24,10 @@
 
 /* Image section styling */
 .pet-image-container {
-  width: 45%; /* Take 45% of the width for the image */
+  width: 50%; /* Take 45% of the width for the image */
+  height: 40%;
   max-width: 500px;
+  border-radius: 10px;
   display: flex;
   padding: 30px 0 0 0;
   justify-content: center;
@@ -35,7 +37,7 @@
 
 /* Button style consistent with MainPage */
 .submitbuttonpet {
-  background-color: rgb(39, 32, 32);
+  background-color: rgba(161, 105, 138, 0.379);
   margin-top: 20px;
   padding: 10px 20px;
   color: white;

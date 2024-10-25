@@ -1,39 +1,40 @@
-import React, { useState } from 'react';
-import './rewards.css'; // Ensure you create a separate CSS file for styling
+import React, { useState, useEffect } from 'react';
+import './rewards.css';
 
 const RewardShop = ({ currentCoins, setCoins, setBackground }) => {
-  // Define items with initial owned status
   const initialItems = [
-    { id: 1, name: 'town', cost: 0, owned: true }, // Default is owned initially
+    { id: 1, name: 'town', cost: 0, owned: true },
     { id: 2, name: 'snow', cost: 30, owned: false },
     { id: 3, name: 'beach', cost: 30, owned: false },
     { id: 4, name: 'cafe', cost: 30, owned: false },
     { id: 5, name: 'DLC', cost: 9999, owned: false },
   ];
 
-  const [items, setItems] = useState(initialItems);
+  // Retrieve owned status from local storage or initialize with default items
+  const [items, setItems] = useState(() => {
+    const savedItems = JSON.parse(localStorage.getItem('ownedItems'));
+    return savedItems || initialItems;
+  });
+
+  // Save items to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem('ownedItems', JSON.stringify(items));
+  }, [items]);
 
   const handlePurchaseOrSelect = (item) => {
-    if (!item.owned) {
-      if (currentCoins >= item.cost) {
-        // Deduct coins and set the item as owned
-        setCoins(currentCoins - item.cost);
-        setItems(items.map(i => 
-          i.id === item.id ? { ...i, owned: true } : i
-        ));
-        alert(`You bought ${item.name} for ${item.cost} coins!`);
-      } else {
-        // Alert if not enough coins
-        alert("You don't have enough coins!");
-      }
+    if (!item.owned && currentCoins >= item.cost) {
+      setCoins(currentCoins - item.cost);
+      setItems(items.map(i => i.id === item.id ? { ...i, owned: true } : i));
+      alert(`You bought ${item.name} for ${item.cost} coins!`);
+    } else if (!item.owned) {
+      alert("You don't have enough coins!");
     }
-    // Set background whether it's newly purchased or already owned
     setBackground(`/images/bg-${item.id}.png`);
   };
 
   return (
     <div className="reward-shop">
-      <h2 className='h2-re'>Reward Shop</h2>
+      <h2 className="h2-re">Reward Shop</h2>
       <div className="item-list">
         {items.map(item => (
           <div key={item.id} className="item">
@@ -41,7 +42,7 @@ const RewardShop = ({ currentCoins, setCoins, setBackground }) => {
             <p>Cost: {item.owned ? 'Owned' : `${item.cost} coins`}</p>
             <button 
               onClick={() => handlePurchaseOrSelect(item)}
-              disabled={!item.owned && currentCoins < item.cost} // Disable if not enough coins
+              disabled={!item.owned && currentCoins < item.cost}
             >
               {item.owned ? 'Select' : 'Buy'}
             </button>

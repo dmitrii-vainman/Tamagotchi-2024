@@ -2,6 +2,7 @@
     width: auto; /* Keep this width consistent with the form */
     height: auto; /* Adjust height to your preference */
     border-radius: 10px;
+    background-color: #9d9da59e;
     display: flex;
     flex-direction: column; /* Center content horizontally */
     justify-content: center; /* Push the image towards the bottom */
