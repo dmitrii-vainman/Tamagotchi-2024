@@ -7,7 +7,7 @@ const AffectionMeter = ({ level, setCoins, increaseXp, affection, setAffection }
   const increaseAffection = () => {
     if (affection >= 10) {
       setAffection(0); // Reset affection
-      setCoins(prevCoins => prevCoins + level); // Reward coins based on the current level
+      setCoins(prevCoins => prevCoins + (level*3)); // Reward coins based on the current level
       increaseXp(); // Call the increaseXp function to increase XP
     } else {
       setAffection(prevAffection => Math.min(prevAffection + 1, 10)); // Max affection level
