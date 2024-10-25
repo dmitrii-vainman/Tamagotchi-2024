@@ -11,7 +11,7 @@ const PetForm = ({ updatePetType, petType, selectedColor, setSelectedColor, setP
 
   return (
     <div className="pet-form">
-      <h2>Erstelle deinen Snuggle Buddy!</h2>
+      <h2 className='h2-de'>Erstelle deinen Snuggle Buddy!</h2>
 
       <div className="form-group-typ">
         <label>Typ: </label>

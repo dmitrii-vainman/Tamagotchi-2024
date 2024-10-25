@@ -87,7 +87,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   return (
     <div className='pet-container'>
       {/* Hungerstatus und Fortschrittsbalken */}
-      <h2 style={{ textShadow: "1px 1px 2px black" }}>Sättigungsgefühl</h2>
+      <h2 className='h2-fe' style={{ textShadow: "1px 1px 2px black" }}>Sättigungsgefühl</h2>
       <div className="progress-bar" > 
         <div
           className="progress"

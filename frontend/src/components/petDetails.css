@@ -7,10 +7,10 @@
   max-height: 500px;
 }
 
-h2 {
+.h2-de {
   text-align: center; /* Centers the text */
   font-size: 24px; /* Adjust font size as needed */
-  color: #241b1b; /* Darker, contrasting color for better readability */
+  color: #ffffff; /* Darker, contrasting color for better readability */
   margin-bottom: 2em; /* Adds spacing below the heading */
 }
 

@@ -33,7 +33,7 @@
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-h2 {
+.h2-re {
     margin-bottom: 20px;
     color: #e0e0e0; /* Light text for headers */
 }

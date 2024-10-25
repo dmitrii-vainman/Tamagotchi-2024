@@ -1,6 +1,3 @@
-import React from 'react';
-import './petImage.css'; // Import your CSS file for styling
-
 const PetImage = ({ petType, selectedColor, petName, pageType }) => {
   // Define images for each pet type and color on different pages
   const images = {
@@ -36,31 +33,41 @@ const PetImage = ({ petType, selectedColor, petName, pageType }) => {
     },
   };
 
+  // Debugging output
+  console.log('petName:', petName);
+  console.log('petType:', petType);
+  console.log('selectedColor:', selectedColor);
+  
   // Select the correct image based on pet type, color, and page
-  const petImageSrc = images[petType]?.[pageType]?.[selectedColor] || '/images/dog.png'; // Fallback to default
+  const petImageSrc = images[petType]?.[pageType]?.[selectedColor] || '/images/cat-2.png'; // Fallback to default
+
+
 
   return (
-    <div 
-      className={`pet-image-container ${pageType}-page`} 
-      style={pageType === 'mainPage' ? {
-        backgroundColor: 'rgba(38, 38, 38, 0.5)', // Grey with 50% opacity for MainPage
-        backgroundPosition: 'center',
-        width: '504px',
-        height: '400px',
-        position: 'relative',
-      } : {}}
-    >
+    <div>
       <h2 className='petBuddy'>{petName}</h2>
-      <img 
-        src={petImageSrc} 
-        alt={petType} 
-        className="pet-image" 
-        style={pageType === 'mainPage' ? {
-          position: 'absolute', 
-          bottom: '10px', 
-          maxWidth: '50%', 
-        } : {}} 
-      />
+    
+      <div 
+        className={`pet-image-container`} 
+        style={{
+          backgroundColor: 'rgba(38, 38, 38, 0.5)', // Grey with 50% opacity for MainPage
+          backgroundPosition: 'center',
+          width: '504px',
+          height: '400px',
+          position: 'relative',
+        }}
+      >
+        <img 
+          src={petImageSrc} 
+          alt={petType} 
+          className="pet-image" 
+          style={pageType === 'mainPage' ? {
+            position: 'absolute', 
+            bottom: '10px', 
+            maxWidth: '50%', 
+          } : {}} 
+        />
+      </div>
     </div>
   );
 };

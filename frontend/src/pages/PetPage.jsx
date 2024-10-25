@@ -9,6 +9,7 @@ function PetPage() {
   const [petType, setPetType] = useState(''); // Track selected pet type
   const [petName, setPetName] = useState('');
   const navigate = useNavigate();
+  const [error, setError] = useState(''); // State to track error messages
   
   const handleSubmit = async () => {
     if (!petName || !petType || !selectedColor) {

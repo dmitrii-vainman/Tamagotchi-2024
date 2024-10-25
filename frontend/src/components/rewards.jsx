@@ -8,7 +8,7 @@ const RewardShop = ({ currentCoins, setCoins, setBackground }) => {
     { id: 2, name: 'snow', cost: 30, owned: false },
     { id: 3, name: 'beach', cost: 30, owned: false },
     { id: 4, name: 'cafe', cost: 30, owned: false },
-    { id: 5, name: 'test', cost: 100, owned: false },
+    { id: 5, name: 'DLC', cost: 9999, owned: false },
   ];
 
   const [items, setItems] = useState(initialItems);
@@ -33,7 +33,7 @@ const RewardShop = ({ currentCoins, setCoins, setBackground }) => {
 
   return (
     <div className="reward-shop">
-      <h2>Reward Shop</h2>
+      <h2 className='h2-re'>Reward Shop</h2>
       <div className="item-list">
         {items.map(item => (
           <div key={item.id} className="item">
