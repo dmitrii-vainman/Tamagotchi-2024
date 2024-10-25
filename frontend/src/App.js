@@ -26,7 +26,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/impressum' element={<Impressum />} />
           <Route path='/petpage' element={<PetPage />} />
-          <Route path='/mainpage' element={<MainPage />} />
+          <Route path="/MainPage" element={<MainPage />}/>
           <Route path='/reset-password' element={<ResetPassword />} />
           <Route path='/reset' element={<RequestReset />} />
           <Route path='/*' element={<NotFound />} />
