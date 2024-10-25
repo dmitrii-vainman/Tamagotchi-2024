@@ -4,6 +4,8 @@ import PetImage from '../components/petImage';
 import { useNavigate } from 'react-router-dom';
 import './PetPage.css';
 
+const apiUrl = 'http://snugglebuddies.de:5000';
+
 function PetPage() {
   const [selectedColor, setSelectedColor] = useState(''); // Track selected color
   const [petType, setPetType] = useState(''); // Track selected pet type
@@ -24,7 +26,7 @@ function PetPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/create-pet', {
+      const response = await fetch(`${apiUrl}/create-pet`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
