@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function RequestReset() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const apiUrl = 'http://localhost:5000'
+    const apiUrl = 'http://snugglebuddies.de:5000'
 
     const handleRequestReset = async (e) => {
         e.preventDefault();
