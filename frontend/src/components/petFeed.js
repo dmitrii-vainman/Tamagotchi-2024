@@ -123,7 +123,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
             zIndex: 999,
           }}
         >
-          🎉 Glückwunsch, {user}! Du hast ein neues Level erreicht! Lv: {level} 🥳
+          🎉 Glückwunsch! Du hast ein neues Level erreicht! Lv: {level} 🥳
         </div>
       )}
     </div>
