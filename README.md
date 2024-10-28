@@ -1,21 +1,21 @@
 # Tamagotchi-2024
 
-SnuggleBuddies
+**SnuggleBuddies**
 
 Beschreibung
 
 Dieses Projekt ermöglicht es Benutzern, ein virtuelles Haustier zu erstellen und mit ihm zu interagieren. Die Benutzer können verschiedene Details wie den Typ des Tieres und den Namen festlegen. Diese Informationen werden in einer SQLite-Datenbank gespeichert, um den Fortschritt des virtuellen Haustiers zu verfolgen.
 
 Funktionen
-Erstelle ein virtuelles Tier mit individuellen Eigenschaften.
-Wähle aus verschiedenen Tierarten (Hund, Katze, Vogel).
-Speichere die Details des Tieres in einer SQLite-Datenbank.
-Verfolge den Fortschritt und die Interaktionen mit deinem Haustier.
+- Erstelle ein virtuelles Haustier mit individuellen Eigenschaften.
+- Wähle aus verschiedenen Tierarten: Hund, Katze oder Vogel.
+- Speichere die Details des Haustieres in einer SQLite-Datenbank.
+- Verfolge den Fortschritt und die Interaktionen mit deinem Haustier.
 
 Technologien
-Frontend: React,css,html
-Backend: Express
-Datenbank: SQLite
+- Frontend: React,css,html
+- Backend: Express
+- Datenbank: SQLite
 
 Installation
 
