@@ -22,12 +22,16 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   }, []);
 
   useEffect(() => {
-    if (playTime >= 2700) {//45min 
-      setLevel(3);
-    } else if (playTime >= 900) {//15min
-      setLevel(2);
-    }
+    setLevel(prevLevel => {
+      if (playTime >= 2700) { // 45min
+        return Math.max(prevLevel, 3); // Höchstens Level 3
+      } else if (playTime >= 900) { // 15min
+        return Math.max(prevLevel, 2); // Höchstens Level 2
+      }
+      return prevLevel; // Wenn kein Level erhöht wird, zurückgeben
+    });
   }, [playTime]);
+  
 
   useEffect(() => {
     if (level > 1) {
