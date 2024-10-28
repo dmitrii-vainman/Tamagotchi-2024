@@ -8,6 +8,7 @@ function NotFound() {
         <div>
             <h2>Fehler! Die Seite wurde nicht gefunden!</h2>
 
+
     
             
             <p><Link to="/login">Einloggen</Link></p>

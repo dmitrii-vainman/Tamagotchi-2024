@@ -4,7 +4,7 @@ import PetImage from '../components/petImage';
 import { useNavigate } from 'react-router-dom';
 import './PetPage.css';
 
-const apiUrl = 'http://snugglebuddies.de:5000';
+const apiUrl = 'http://snugglebuddys.de';
 
 function PetPage() {
   const [selectedColor, setSelectedColor] = useState(''); // Track selected color

@@ -8,7 +8,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setHunger(prevHunger => Math.max(prevHunger - 1, 0)); 
-    }, 1000); 
+    }, 60000); 
 
     return () => clearInterval(interval); 
   }, []);
@@ -22,9 +22,9 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   }, []);
 
   useEffect(() => {
-    if (playTime >= 60) {
+    if (playTime >= 2700) {//45min 
       setLevel(3);
-    } else if (playTime >= 30) {
+    } else if (playTime >= 900) {//15min
       setLevel(2);
     }
   }, [playTime]);
@@ -43,7 +43,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   // Synchronisiere den Hungerwert in bestimmten Abständen mit dem Backend
   useEffect(() => {
     const syncHunger = setInterval(() => {
-        fetch('http://localhost:5000/feed-pet', {
+        fetch('http://snugglebuddys.de/feed-pet', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
             zIndex: 999,
           }}
         >
-          🎉 Glückwunsch! Du hast ein neues Level erreicht! Lv: {level} 🥳
+          🎉 Glückwunsch, {user}! Du hast ein neues Level erreicht! Lv: {level} 🥳
         </div>
       )}
     </div>
