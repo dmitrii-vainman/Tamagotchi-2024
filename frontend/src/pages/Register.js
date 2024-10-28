@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const apiUrl = 'http://snugglebuddies.de:5000'
+const apiUrl = 'http://snugglebuddys.de'
 
 function Register() {
 
