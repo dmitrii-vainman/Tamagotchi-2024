@@ -6,7 +6,7 @@ function ResetPassword() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const { token } = useParams(); // Der Token wird aus der URL geholt
-  const apiUrl = 'http://snugglebuddys.de';
+  const apiUrl = 'http://localhost:5000';
   const navigate = useNavigate();
 
   const handleResetPassword = async (e) => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const apiUrl = 'http://snugglebuddys.de'
-
+  const apiUrl = 'http://localhost:5000'
+  
 function Register() {
 
     const [formData, setFormData] = useState({
