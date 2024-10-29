@@ -47,7 +47,7 @@ const VirtualPet = ({ hunger, setHunger, level, setLevel, token }) => {
   // Synchronisiere den Hungerwert in bestimmten Abständen mit dem Backend
   useEffect(() => {
     const syncHunger = setInterval(() => {
-        fetch('http://snugglebuddys.de/feed-pet', {
+        fetch('http://localhost:5000/feed-pet', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

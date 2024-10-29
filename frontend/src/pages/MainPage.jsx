@@ -20,8 +20,7 @@ const MainPage = ({ user }) => {
   const [selectedColor, setSelectedColor] = useState(''); // Optional
 
   const navigate = useNavigate();
-  const apiUrl = 'http://snugglebuddys.de';
-
+  const apiUrl = 'http://localhost:5000'
 
 
   useEffect(() => {
