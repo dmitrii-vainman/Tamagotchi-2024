@@ -17,25 +17,18 @@ Technologien
 - Backend: Express
 - Datenbank: SQLite
 
-Installation
+## Installation
 
-- Klone das Repository:
-  git clone https://github.com/dmitrii-vainman/Tamagotchi-2024
-  
- - Navigiere in das Projektverzeichnis:
-  cd dein-repo
-   
- - Installiere die Abhängigkeiten:
-  npm install
+Um die Anwendung lokal zu starten, folge diesen Schritten:
 
-- Code kopieren
-  im /frontend -> npm run build
+1. **Repository klonen**  
+   Klone das Repository in dein lokales Verzeichnis:
+   ```bash
+   git clone https://github.com/dmitrii-vainman/Tamagotchi-2024.git
+   cd Tamagotchi-2024
+   chmod +x start.sh
+  ./start.sh
 
- 
-  im /backend -> Kopiere die Datei `example.env` nach `.env` und trage deine individuellen Umgebungsvariablen ein.
-  cp example.env .env
-  
-  npm start
 
 Nutzung
 
